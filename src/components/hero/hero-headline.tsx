@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { heroAnimation, heroContent } from "@/constants/hero";
+import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 const containerVariants = {
@@ -26,22 +27,27 @@ const wordVariants = {
   },
 };
 
+function StaticHeadline() {
+  return (
+    <h1 className="font-display text-foreground text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+      <span className="block">{heroContent.headline.line1.join(" ")}</span>
+      <span className="from-primary to-purple block bg-gradient-to-r bg-clip-text text-transparent">
+        {heroContent.headline.line2.join(" ")}
+      </span>
+    </h1>
+  );
+}
+
 export function HeroHeadline() {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
   const lines = [
     heroContent.headline.line1,
     heroContent.headline.line2,
   ] as const;
 
-  if (prefersReducedMotion) {
-    return (
-      <h1 className="font-display text-foreground text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-        <span className="block">{heroContent.headline.line1.join(" ")}</span>
-        <span className="from-primary to-purple block bg-gradient-to-r bg-clip-text text-transparent">
-          {heroContent.headline.line2.join(" ")}
-        </span>
-      </h1>
-    );
+  if (!mounted || prefersReducedMotion) {
+    return <StaticHeadline />;
   }
 
   return (
@@ -61,12 +67,12 @@ export function HeroHeadline() {
           initial="hidden"
           animate="visible"
         >
-          {line.map((word, wordIndex) => (
+          {line.map((word) => (
             <motion.span
               key={word}
               className="mr-[0.25em] inline-block"
               variants={wordVariants}
-              aria-hidden={wordIndex >= 0}
+              aria-hidden
             >
               {word}
             </motion.span>

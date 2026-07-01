@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { heroAnimation, heroContent } from "@/constants/hero";
 import { Button } from "@/components/ui/button";
+import { useMounted } from "@/hooks/use-mounted";
 
 const buttonContainerVariants = {
   hidden: {},
@@ -28,24 +29,31 @@ const buttonVariants = {
   },
 };
 
-export function HeroCta() {
-  const prefersReducedMotion = useReducedMotion();
+function StaticCta() {
   const { primary, secondary } = heroContent.cta;
 
-  if (prefersReducedMotion) {
-    return (
-      <div className="flex flex-wrap gap-4">
-        <Button asChild size="lg">
-          <Link href={primary.href}>
-            {primary.label}
-            <ArrowRight aria-hidden />
-          </Link>
-        </Button>
-        <Button asChild variant="outline" size="lg">
-          <Link href={secondary.href}>{secondary.label}</Link>
-        </Button>
-      </div>
-    );
+  return (
+    <div className="flex flex-wrap gap-4">
+      <Button asChild size="lg">
+        <Link href={primary.href}>
+          {primary.label}
+          <ArrowRight aria-hidden />
+        </Link>
+      </Button>
+      <Button asChild variant="outline" size="lg">
+        <Link href={secondary.href}>{secondary.label}</Link>
+      </Button>
+    </div>
+  );
+}
+
+export function HeroCta() {
+  const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
+  const { primary, secondary } = heroContent.cta;
+
+  if (!mounted || prefersReducedMotion) {
+    return <StaticCta />;
   }
 
   return (

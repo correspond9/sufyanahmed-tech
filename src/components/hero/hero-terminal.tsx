@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { heroAnimation, heroContent } from "@/constants/hero";
+import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 interface HeroTerminalProps {
@@ -10,6 +11,7 @@ interface HeroTerminalProps {
 
 export function HeroTerminal({ className }: HeroTerminalProps) {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
   const { path, lines } = heroContent.terminal;
 
   const content = (
@@ -61,7 +63,7 @@ export function HeroTerminal({ className }: HeroTerminalProps) {
     </div>
   );
 
-  if (prefersReducedMotion) {
+  if (!mounted || prefersReducedMotion) {
     return content;
   }
 

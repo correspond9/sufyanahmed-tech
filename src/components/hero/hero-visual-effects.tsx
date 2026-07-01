@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 interface HeroVisualEffectsProps {
@@ -9,6 +10,8 @@ interface HeroVisualEffectsProps {
 
 export function HeroVisualEffects({ className }: HeroVisualEffectsProps) {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
+  const animate = mounted && !prefersReducedMotion;
 
   return (
     <div
@@ -20,7 +23,7 @@ export function HeroVisualEffects({ className }: HeroVisualEffectsProps) {
     >
       <div className="bg-grid absolute inset-0 opacity-40" />
 
-      {!prefersReducedMotion && (
+      {animate && (
         <motion.div
           className="bg-primary/10 absolute -top-1/4 left-1/4 h-[60%] w-[60%] rounded-full blur-[100px]"
           animate={{
@@ -38,13 +41,13 @@ export function HeroVisualEffects({ className }: HeroVisualEffectsProps) {
       <div
         className={cn(
           "absolute inset-0",
-          prefersReducedMotion
-            ? "bg-[radial-gradient(ellipse_at_50%_50%,rgb(79_140_255/0.12),transparent_70%)]"
-            : "hero-aurora",
+          animate
+            ? "hero-aurora"
+            : "bg-[radial-gradient(ellipse_at_50%_50%,rgb(79_140_255/0.12),transparent_70%)]",
         )}
       />
 
-      {!prefersReducedMotion && (
+      {animate && (
         <>
           <motion.div
             className="bg-purple/20 absolute top-1/4 right-1/4 size-48 rounded-full blur-3xl"
@@ -61,10 +64,9 @@ export function HeroVisualEffects({ className }: HeroVisualEffectsProps) {
             animate={{ x: [0, 10, 0], y: [0, -10, 0] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
           />
+          <HeroParticles />
         </>
       )}
-
-      {!prefersReducedMotion && <HeroParticles />}
     </div>
   );
 }

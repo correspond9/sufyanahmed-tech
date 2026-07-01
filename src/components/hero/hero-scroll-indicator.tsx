@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
 interface HeroScrollIndicatorProps {
@@ -10,6 +11,8 @@ interface HeroScrollIndicatorProps {
 
 export function HeroScrollIndicator({ className }: HeroScrollIndicatorProps) {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
+  const animate = mounted && !prefersReducedMotion;
 
   return (
     <div
@@ -19,9 +22,7 @@ export function HeroScrollIndicator({ className }: HeroScrollIndicatorProps) {
       )}
       aria-hidden
     >
-      {prefersReducedMotion ? (
-        <ChevronDown className="text-muted-foreground/60 size-5" />
-      ) : (
+      {animate ? (
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{
@@ -32,6 +33,8 @@ export function HeroScrollIndicator({ className }: HeroScrollIndicatorProps) {
         >
           <ChevronDown className="text-muted-foreground/60 size-5" />
         </motion.div>
+      ) : (
+        <ChevronDown className="text-muted-foreground/60 size-5" />
       )}
     </div>
   );

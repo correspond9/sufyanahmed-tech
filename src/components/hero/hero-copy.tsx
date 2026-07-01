@@ -2,12 +2,13 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { heroAnimation, heroContent } from "@/constants/hero";
-import { siteConfig } from "@/config/site";
+import { useMounted } from "@/hooks/use-mounted";
 
 export function HeroSubtitle() {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
 
-  if (prefersReducedMotion) {
+  if (!mounted || prefersReducedMotion) {
     return (
       <p className="text-muted-foreground max-w-xl text-base leading-relaxed sm:text-lg">
         {heroContent.subtitle}
@@ -33,11 +34,12 @@ export function HeroSubtitle() {
 
 export function HeroEyebrow() {
   const prefersReducedMotion = useReducedMotion();
+  const mounted = useMounted();
 
-  if (prefersReducedMotion) {
+  if (!mounted || prefersReducedMotion) {
     return (
       <p className="text-primary text-sm font-medium tracking-wide">
-        {siteConfig.author.role}
+        {heroContent.eyebrow}
       </p>
     );
   }
