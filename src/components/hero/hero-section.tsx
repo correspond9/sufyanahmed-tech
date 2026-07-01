@@ -28,7 +28,7 @@ export function HeroSection() {
             <HeroTerminal className="mt-1 max-w-md" />
           </div>
 
-          <div className="relative flex min-h-[380px] items-center justify-center sm:min-h-[440px] lg:min-h-[calc(100vh-9rem)]">
+          <div className="relative min-h-[380px] w-full sm:min-h-[440px] lg:min-h-[520px]">
             <HeroScene className="absolute inset-0" />
           </div>
         </div>

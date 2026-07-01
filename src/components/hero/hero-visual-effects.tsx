@@ -97,9 +97,8 @@ export function HeroSceneForegroundLight({
       className={cn("pointer-events-none absolute inset-0 z-[2]", className)}
       aria-hidden
     >
-      <div className="from-primary/[0.04] to-purple/[0.05] absolute inset-0 bg-gradient-to-br via-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,transparent_20%,rgba(10,15,31,0.55)_75%)]" />
-      <div className="from-primary/[0.03] absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b to-transparent" />
+      <div className="from-primary/[0.06] to-purple/[0.08] absolute inset-0 bg-gradient-to-br via-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,transparent_50%,rgba(10,15,31,0.2)_100%)]" />
     </div>
   );
 }

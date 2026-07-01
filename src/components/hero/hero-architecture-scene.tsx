@@ -6,7 +6,6 @@ import { Grid } from "@react-three/drei";
 import type { Group, InstancedMesh } from "three";
 import * as THREE from "three";
 
-const CORE_COLOR = "#0A0F1F";
 const EDGE_COLOR = "#4F8CFF";
 const NODE_COLOR = "#111827";
 const ACCENT_COLOR = "#6D5DF6";
@@ -72,7 +71,7 @@ function NetworkLines() {
           count={linePositions.length / 3}
         />
       </bufferGeometry>
-      <lineBasicMaterial color={EDGE_COLOR} transparent opacity={0.22} />
+      <lineBasicMaterial color={EDGE_COLOR} transparent opacity={0.45} />
     </lineSegments>
   );
 }
@@ -90,11 +89,11 @@ function NetworkNodes() {
             <boxGeometry args={[node.scale, node.scale, node.scale]} />
           )}
           <meshStandardMaterial
-            color={node.isCore ? CORE_COLOR : NODE_COLOR}
+            color={node.isCore ? "#141c30" : NODE_COLOR}
             emissive={node.isCore ? EDGE_COLOR : ACCENT_COLOR}
-            emissiveIntensity={node.isCore ? 0.35 : 0.15}
-            roughness={0.6}
-            metalness={0.4}
+            emissiveIntensity={node.isCore ? 0.6 : 0.35}
+            roughness={0.5}
+            metalness={0.5}
           />
         </mesh>
       ))}
@@ -111,7 +110,7 @@ function NetworkNodes() {
           color={EDGE_COLOR}
           wireframe
           transparent
-          opacity={0.18}
+          opacity={0.35}
         />
       </mesh>
     </>
@@ -217,9 +216,10 @@ export function HeroArchitectureScene() {
 
   return (
     <group ref={groupRef}>
-      <ambientLight intensity={0.12} />
-      <pointLight position={[3, 4, 4]} color={EDGE_COLOR} intensity={2.2} />
-      <pointLight position={[-3, -1, 3]} color={ACCENT_COLOR} intensity={1} />
+      <ambientLight intensity={0.25} />
+      <pointLight position={[3, 4, 4]} color={EDGE_COLOR} intensity={3} />
+      <pointLight position={[-3, -1, 3]} color={ACCENT_COLOR} intensity={1.5} />
+      <pointLight position={[0, -2, 2]} color={EDGE_COLOR} intensity={0.8} />
       <directionalLight
         position={[0, 6, 2]}
         color={EDGE_COLOR}
@@ -233,7 +233,7 @@ export function HeroArchitectureScene() {
         cellSize={0.35}
         sectionSize={1.75}
         sectionColor={EDGE_COLOR}
-        cellColor="#1a2332"
+        cellColor="#2a3a52"
         sectionThickness={0.6}
         cellThickness={0.4}
         position={[0, -1.35, 0]}
