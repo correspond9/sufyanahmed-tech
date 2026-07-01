@@ -1,10 +1,5 @@
-import { Background } from "@/components/ui/background";
-import { Container } from "@/components/ui/container";
+import { HeroSection } from "@/components/hero";
 
 export default function HomePage() {
-  return (
-    <Background variant="glow">
-      <Container className="flex min-h-[50vh] items-center justify-center" />
-    </Background>
-  );
+  return <HeroSection />;
 }

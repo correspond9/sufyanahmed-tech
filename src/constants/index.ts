@@ -5,3 +5,4 @@ export {
   shadowTokens,
   spacingTokens,
 } from "@/styles/tokens";
+export { heroAnimation, heroContent } from "@/constants/hero";
