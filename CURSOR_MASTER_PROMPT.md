@@ -1,0 +1,1 @@
+Read AGENTS.md and /docs before coding. Build milestone by milestone. Never invent content. Use reusable components.

@@ -1,0 +1,192 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Typography */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display:
+    var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand colors */
+  --color-navy: #0a0f1f;
+  --color-slate: #111827;
+  --color-electric: #4f8cff;
+  --color-purple: #6d5df6;
+  --color-neutral: #9ca3af;
+  --color-white: #ffffff;
+
+  /* Semantic tokens */
+  --color-background: var(--color-navy);
+  --color-foreground: var(--color-white);
+  --color-surface: var(--color-slate);
+  --color-primary: var(--color-electric);
+  --color-primary-foreground: var(--color-white);
+  --color-secondary: #1f2937;
+  --color-secondary-foreground: var(--color-white);
+  --color-accent: #1e293b;
+  --color-accent-foreground: var(--color-white);
+  --color-muted: #1f2937;
+  --color-muted-foreground: var(--color-neutral);
+  --color-border: #1f2937;
+  --color-ring: var(--color-electric);
+  --color-destructive: #ef4444;
+
+  /* Spacing scale (8px base) */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  --radius: var(--radius-md);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.25);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.35), 0 4px 6px -4px rgb(0 0 0 / 0.25);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+  --shadow-glow: 0 0 40px -10px rgb(79 140 255 / 0.35);
+
+  /* Animation durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+
+  /* Animation easings */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Container */
+  --container-7xl: 80rem;
+  --container-3xl: 48rem;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+
+  :focus-visible {
+    @apply ring-ring ring-offset-background ring-2 ring-offset-2 outline-none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+
+  .bg-glow {
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgb(79 140 255 / 0.15),
+      transparent
+    );
+  }
+
+  .animate-fade-in {
+    animation: fade-in var(--duration-normal) var(--ease-out) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up var(--duration-normal) var(--ease-out) forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in var(--duration-normal) var(--ease-out) forwards;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
