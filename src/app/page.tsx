@@ -1,12 +1,8 @@
 import { HeroSection } from "@/components/hero";
 import {
   AboutSection,
-  JourneySection,
+  BottomGridSection,
   ProjectsSection,
-  ProcessSection,
-  TechStackSection,
-  CertificationsSection,
-  ContactSection,
 } from "@/components/sections";
 
 export default function HomePage() {
@@ -14,12 +10,8 @@ export default function HomePage() {
     <>
       <HeroSection />
       <AboutSection />
-      <JourneySection />
       <ProjectsSection />
-      <ProcessSection />
-      <TechStackSection />
-      <CertificationsSection />
-      <ContactSection />
+      <BottomGridSection />
     </>
   );
 }

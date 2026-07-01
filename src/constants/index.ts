@@ -5,13 +5,15 @@ export {
   shadowTokens,
   spacingTokens,
 } from "@/styles/tokens";
-export { heroAnimation, heroContent } from "@/constants/hero";
 export {
+  siteContent,
+  heroContent,
   aboutContent,
-  journeyContent,
   projectsContent,
   processContent,
   techStackContent,
   certificationsContent,
   contactContent,
+  footerContent,
 } from "@/constants/content";
+export { heroAnimation } from "@/constants/hero";

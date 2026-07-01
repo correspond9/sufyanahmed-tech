@@ -1,233 +1,242 @@
-export const aboutContent = {
-  id: "about",
-  eyebrow: "About",
-  title: "Engineering Products From Concept to Production",
-  description:
-    "I am Sufyan Ahmed Ansari — a founder and product architect who designs and builds production-ready digital products across FinTech, SaaS, and cloud-native platforms.",
-  paragraphs: [
-    "My work sits at the intersection of product thinking and modern engineering. I approach every build with the mindset of a founder: clarity of vision, disciplined architecture, and relentless attention to the details that make software feel premium in production.",
-    "I specialise in fintech platforms, trading systems, and scalable SaaS products — using AI-assisted development workflows to move from architecture to deployment without sacrificing quality, security, or craft.",
+export const siteContent = {
+  brand: {
+    initials: "SA",
+    name: "SufyanAhmed.Tech",
+    tagline: "Building products that scale. Solving problems that matter.",
+  },
+  nav: [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Process", href: "#process" },
+    { label: "Stack", href: "#stack" },
+    { label: "Certifications", href: "#certifications" },
+    { label: "Contact", href: "#contact" },
   ],
-  highlights: [
+  social: [
+    { label: "GitHub", href: "https://github.com/sufyanahmed" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/sufyanahmed" },
+    { label: "Twitter", href: "https://twitter.com/sufyanahmed" },
+    { label: "Email", href: "mailto:hello@sufyanahmed.tech" },
+  ],
+} as const;
+
+export const heroContent = {
+  id: "home",
+  badge: "FOUNDER • PRODUCT ARCHITECT • AI-ASSISTED ENGINEER",
+  headline: {
+    line1: "Building Products",
+    line2: "That Scale.",
+  },
+  subtitle:
+    "I design and build production-ready fintech platforms, SaaS products, trading systems, and cloud-native applications using modern engineering practices and AI-assisted development workflows.",
+  cta: {
+    primary: { label: "See What I've Built", href: "#projects" },
+    secondary: { label: "Get In Touch", href: "#contact" },
+  },
+  terminal: {
+    path: "~/sufyan",
+    lines: [
+      {
+        command: "Building TradingNexus...",
+        status: "Production",
+        color: "emerald",
+      },
+      {
+        command: "Building XchangeByte...",
+        status: "In Progress",
+        color: "amber",
+      },
+      { command: "Always Learning...", status: "Every Day", color: "sky" },
+    ],
+  },
+  ecosystemNodes: [
     {
-      label: "Focus",
-      value: "FinTech & SaaS Products",
+      label: "TradingNexus",
+      subtitle: "Live Platform",
+      icon: "trending",
+      ring: 0,
+      angle: 25,
     },
     {
-      label: "Approach",
-      value: "AI-Assisted Engineering",
+      label: "Financio",
+      subtitle: "Finance SaaS",
+      icon: "wallet",
+      ring: 0,
+      angle: 155,
     },
     {
-      label: "Standard",
-      value: "Production-Ready Quality",
+      label: "XchangeByte",
+      subtitle: "In Progress",
+      icon: "exchange",
+      ring: 0,
+      angle: 285,
+    },
+    {
+      label: "AI & Automation",
+      subtitle: "Workflow Engine",
+      icon: "brain",
+      ring: 1,
+      angle: 55,
+    },
+    {
+      label: "Open Source",
+      subtitle: "Community",
+      icon: "git",
+      ring: 1,
+      angle: 195,
+    },
+    {
+      label: "System Design",
+      subtitle: "Architecture",
+      icon: "layers",
+      ring: 2,
+      angle: 110,
+    },
+    {
+      label: "Cloud Architecture",
+      subtitle: "Scalable • Secure",
+      icon: "cloud",
+      ring: 2,
+      angle: 250,
     },
   ],
 } as const;
 
-export const journeyContent = {
-  id: "journey",
-  eyebrow: "Journey",
-  title: "Building Products That Compound",
+export const aboutContent = {
+  id: "about",
+  title: "From Passion to Purpose",
   description:
-    "A focused path from product vision to production systems — each venture strengthening the next.",
-  milestones: [
+    "I'm Sufyan Ahmed Ansari — a founder and product architect who transforms ideas into production-ready digital products. My journey from fitness and finance to software engineering shaped a unique approach: disciplined, user-focused, and relentlessly quality-driven.",
+  cta: { label: "Know My Story", href: "#journey" },
+  timeline: [
     {
-      year: "Foundation",
-      title: "Product Architecture Mindset",
+      step: "01",
+      title: "Fitness First",
       description:
-        "Established a founder-led approach to software — prioritising system design, user experience, and engineering discipline before writing code.",
+        "Built discipline, consistency, and the mindset to show up every day.",
+      icon: "dumbbell",
     },
     {
-      year: "2024",
-      title: "TradingNexus",
+      step: "02",
+      title: "Finance & Markets",
       description:
-        "Designed and built a production fintech trading platform — from architecture and UI systems to deployment-ready infrastructure.",
-      status: "Production",
+        "Developed deep understanding of markets, risk, and financial systems.",
+      icon: "chart",
     },
     {
-      year: "2025",
-      title: "XchangeByte",
+      step: "03",
+      title: "Software Engineer",
       description:
-        "Currently building the next-generation exchange platform — applying lessons from TradingNexus to create a more scalable, cloud-native product.",
-      status: "In Progress",
+        "Learned to architect and build production-grade software products.",
+      icon: "code",
     },
     {
-      year: "Ongoing",
-      title: "Continuous Learning",
+      step: "04",
+      title: "AI-Assisted Builder",
       description:
-        "Deepening expertise in cloud architecture, AI-assisted development, and modern product engineering — every day.",
-      status: "Active",
+        "Integrated AI workflows to accelerate development without sacrificing quality.",
+      icon: "brain",
+    },
+    {
+      step: "05",
+      title: "Building Impact",
+      description:
+        "Shipping products that solve real problems for real users at scale.",
+      icon: "rocket",
     },
   ],
 } as const;
 
 export const projectsContent = {
   id: "projects",
-  eyebrow: "Featured Work",
-  title: "Products Built to Scale",
-  description:
-    "Real platforms engineered end-to-end — from system architecture to production deployment.",
-  projects: [
+  title: "Products I'm Proud Of.",
+  viewAll: { label: "View All Projects", href: "#projects" },
+  items: [
     {
       id: "tradingnexus",
       name: "TradingNexus",
-      tagline: "FinTech Trading Platform",
       description:
-        "A production-ready trading platform built with modern architecture, real-time data flows, and a premium user experience designed for serious market participants.",
-      status: "Production",
-      tags: ["FinTech", "Next.js", "TypeScript", "Docker"],
+        "A production-ready trading platform with real-time data, premium UX, and scalable architecture.",
+      status: "Live" as const,
+      tags: ["Next.js", "FastAPI", "PostgreSQL"],
       href: "#contact",
-      gradient: "from-primary/20 via-navy to-purple/15",
-      accent: "#4F8CFF",
+      theme: "dark" as const,
+    },
+    {
+      id: "financio",
+      name: "Financio",
+      description:
+        "Personal finance management platform with intuitive dashboards and smart insights.",
+      status: "Live" as const,
+      tags: ["Next.js", "Node.js", "MongoDB"],
+      href: "#contact",
+      theme: "light" as const,
     },
     {
       id: "xchangebyte",
       name: "XchangeByte",
-      tagline: "Exchange Platform",
       description:
-        "A next-generation exchange platform in active development — engineered for scalability, security, and cloud-native deployment from day one.",
-      status: "In Progress",
-      tags: ["FinTech", "Cloud-Native", "TypeScript", "Architecture"],
+        "Next-generation exchange platform engineered for scalability and cloud-native deployment.",
+      status: "In Progress" as const,
+      tags: ["Next.js"],
       href: "#contact",
-      gradient: "from-purple/20 via-navy to-primary/10",
-      accent: "#6D5DF6",
+      theme: "dark" as const,
     },
   ],
 } as const;
 
 export const processContent = {
   id: "process",
-  eyebrow: "Process",
-  title: "How I Build Products",
-  description:
-    "A disciplined, founder-led process — designed to move from idea to production without cutting corners.",
+  title: "How I Build",
   steps: [
-    {
-      number: "01",
-      title: "Discovery & Architecture",
-      description:
-        "Define the product vision, map system boundaries, and design an architecture that scales with the business — not against it.",
-    },
-    {
-      number: "02",
-      title: "Design Systems",
-      description:
-        "Establish typography, colour, spacing, and component patterns that create a cohesive, premium product experience.",
-    },
-    {
-      number: "03",
-      title: "AI-Assisted Development",
-      description:
-        "Leverage AI-assisted workflows to accelerate development while maintaining strict code quality, type safety, and review standards.",
-    },
-    {
-      number: "04",
-      title: "Quality & Testing",
-      description:
-        "Rigorous testing across functionality, accessibility, performance, and security — every release must meet production standards.",
-    },
-    {
-      number: "05",
-      title: "Deployment & DevOps",
-      description:
-        "Dockerised, environment-driven deployments with CI/CD pipelines — built for reliability from the first production release.",
-    },
-    {
-      number: "06",
-      title: "Iteration & Scale",
-      description:
-        "Continuous improvement driven by real usage — refining architecture, performance, and product experience as the platform grows.",
-    },
+    "Discovery",
+    "Architecture",
+    "Design",
+    "AI-Assisted",
+    "Testing",
+    "Deployment",
   ],
 } as const;
 
 export const techStackContent = {
-  id: "tech",
-  eyebrow: "Technology",
-  title: "Tools & Stack",
-  description:
-    "Modern, battle-tested technologies chosen for performance, maintainability, and production reliability.",
-  categories: [
-    {
-      name: "Frontend",
-      technologies: [
-        "Next.js",
-        "React",
-        "TypeScript",
-        "Tailwind CSS",
-        "Framer Motion",
-      ],
-    },
-    {
-      name: "Backend",
-      technologies: [
-        "Node.js",
-        "PostgreSQL",
-        "Firebase",
-        "REST APIs",
-        "Docker",
-      ],
-    },
-    {
-      name: "DevOps",
-      technologies: ["Docker", "Coolify", "CI/CD", "GitHub", "Linux"],
-    },
-    {
-      name: "AI & Tools",
-      technologies: [
-        "AI-Assisted Development",
-        "Cursor",
-        "Git",
-        "Figma",
-        "MDX",
-      ],
-    },
+  id: "stack",
+  title: "Tech Stack",
+  items: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Python",
+    "FastAPI",
+    "Node.js",
+    "PostgreSQL",
+    "AWS",
   ],
 } as const;
 
 export const certificationsContent = {
   id: "certifications",
-  eyebrow: "Credentials",
-  title: "Expertise & Continuous Learning",
-  description:
-    "Deep, hands-on proficiency across modern product engineering — built through real projects, not theory.",
+  title: "Certifications",
+  viewAll: { label: "View All Certifications", href: "#certifications" },
   items: [
-    {
-      title: "Full-Stack Product Engineering",
-      issuer: "Production Experience",
-      description:
-        "End-to-end ownership of fintech and SaaS products — from system design through deployment and iteration.",
-      year: "Ongoing",
-    },
-    {
-      title: "Cloud-Native Architecture",
-      issuer: "Project-Based",
-      description:
-        "Dockerised deployments, environment-driven configuration, and scalable infrastructure patterns applied across live products.",
-      year: "2024 — Present",
-    },
-    {
-      title: "AI-Assisted Software Development",
-      issuer: "Daily Practice",
-      description:
-        "Integrating AI tools into disciplined engineering workflows — accelerating delivery without compromising code quality.",
-      year: "Ongoing",
-    },
-    {
-      title: "FinTech Platform Development",
-      issuer: "TradingNexus & XchangeByte",
-      description:
-        "Specialised experience building trading systems, exchange platforms, and financial data products for production use.",
-      year: "2024 — Present",
-    },
+    { name: "NISM", subtitle: "Certified" },
+    { name: "NSE", subtitle: "Certified" },
+    { name: "NIIT", subtitle: "Certified" },
+    { name: "Gold's Gym", subtitle: "Trainer" },
   ],
 } as const;
 
 export const contactContent = {
   id: "contact",
-  eyebrow: "Contact",
-  title: "Let's Build Something",
-  description:
-    "Open to consulting, freelance projects, full-time opportunities, and strategic partnerships. Reach out directly.",
-  cta: "Start a Conversation",
+  title: "Have a project or opportunity?",
+  cta: { label: "Start a Conversation", href: "mailto:hello@sufyanahmed.tech" },
+  email: "hello@sufyanahmed.tech",
+} as const;
+
+export const footerContent = {
+  copyright: "© 2026 Sufyan Ahmed. All rights reserved.",
+  links: [
+    { label: "Privacy Policy", href: "#" },
+    { label: "Terms of Use", href: "#" },
+  ],
 } as const;

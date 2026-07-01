@@ -1,48 +1,84 @@
-import { aboutContent } from "@/constants/content";
-import { Section } from "@/components/ui/section";
+"use client";
+
+import Link from "next/link";
 import {
-  SectionHeader,
-  Reveal,
-  StaggerReveal,
-  StaggerItem,
-} from "@/components/ui/reveal";
+  ArrowRight,
+  Brain,
+  ChartLine,
+  Code2,
+  Dumbbell,
+  Rocket,
+} from "lucide-react";
+import { aboutContent } from "@/constants/content";
+import { Container } from "@/components/ui/container";
+import { SectionTitle } from "@/components/ui/glass";
+import { Reveal } from "@/components/ui/reveal";
+
+const iconMap = {
+  dumbbell: Dumbbell,
+  chart: ChartLine,
+  code: Code2,
+  brain: Brain,
+  rocket: Rocket,
+} as const;
 
 export function AboutSection() {
   return (
-    <Section id={aboutContent.id} spacing="lg" className="relative">
-      <div className="section-divider absolute inset-x-0 top-0" aria-hidden />
-      <SectionHeader
-        eyebrow={aboutContent.eyebrow}
-        title={aboutContent.title}
-        description={aboutContent.description}
+    <section id={aboutContent.id} className="relative py-20 lg:py-28">
+      <div
+        className="section-glow-divider absolute inset-x-0 top-0"
+        aria-hidden
       />
+      <Container>
+        <div className="mb-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-16">
+          <Reveal>
+            <SectionTitle className="mb-5">{aboutContent.title}</SectionTitle>
+            <p className="mb-8 max-w-md text-[15px] leading-[1.8] text-white/55">
+              {aboutContent.description}
+            </p>
+            <Link
+              href={aboutContent.cta.href}
+              className="hover:border-primary/30 hover:bg-primary/10 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-[13px] font-medium text-white/80 transition-all"
+            >
+              {aboutContent.cta.label}
+              <ArrowRight className="size-3.5" />
+            </Link>
+          </Reveal>
 
-      <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-16">
-        <div className="space-y-6">
-          {aboutContent.paragraphs.map((paragraph, index) => (
-            <Reveal key={index} delay={index * 0.08}>
-              <p className="text-muted-foreground/90 text-base leading-[1.8] sm:text-[17px]">
-                {paragraph}
-              </p>
-            </Reveal>
-          ))}
+          <div id="journey" className="relative overflow-x-auto pb-4">
+            <div className="from-purple via-primary to-purple absolute top-[2.75rem] right-8 left-8 h-px bg-gradient-to-r opacity-60" />
+            <div className="flex min-w-[640px] gap-4 lg:min-w-0 lg:justify-between">
+              {aboutContent.timeline.map((item, index) => {
+                const Icon = iconMap[item.icon];
+                return (
+                  <Reveal
+                    key={item.step}
+                    delay={index * 0.08}
+                    className="flex-1"
+                  >
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative mb-4">
+                        <div className="from-primary to-purple flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#4F8CFF]/20 to-[#6D5DF6]/20 shadow-[0_0_24px_-4px_rgba(79,140,255,0.3)]">
+                          <Icon className="text-primary size-5" />
+                        </div>
+                        <span className="text-primary absolute -top-2 -right-2 rounded-md bg-[#0a0f1f] px-1.5 py-0.5 text-[9px] font-bold">
+                          {item.step}
+                        </span>
+                      </div>
+                      <h3 className="mb-2 text-[13px] font-semibold text-white">
+                        {item.title}
+                      </h3>
+                      <p className="max-w-[140px] text-[11px] leading-relaxed text-white/45">
+                        {item.description}
+                      </p>
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          </div>
         </div>
-
-        <StaggerReveal className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-          {aboutContent.highlights.map((item) => (
-            <StaggerItem key={item.label}>
-              <div className="glass-card rounded-xl p-5">
-                <p className="text-muted-foreground mb-1.5 text-[11px] font-medium tracking-[0.1em] uppercase">
-                  {item.label}
-                </p>
-                <p className="text-foreground text-sm font-medium">
-                  {item.value}
-                </p>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerReveal>
-      </div>
-    </Section>
+      </Container>
+    </section>
   );
 }

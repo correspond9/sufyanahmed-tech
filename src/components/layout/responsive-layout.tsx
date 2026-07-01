@@ -1,7 +1,8 @@
 import { Space_Grotesk, Inter } from "next/font/google";
 import type { ReactNode } from "react";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import { SiteFooter } from "@/components/site/site-footer";
+import { SiteHeader } from "@/components/site/site-header";
+import { SocialSidebar } from "@/components/site/social-sidebar";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -24,11 +25,12 @@ export function ResponsiveLayout({ children }: ResponsiveLayoutProps) {
     <div
       className={`${spaceGrotesk.variable} ${inter.variable} flex min-h-screen flex-col font-sans`}
     >
-      <Navbar />
+      <SiteHeader />
+      <SocialSidebar />
       <main id="main-content" className="flex-1">
         {children}
       </main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }

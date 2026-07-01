@@ -1,107 +1,74 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { heroAnimation, heroContent } from "@/constants/hero";
-import { useMounted } from "@/hooks/use-mounted";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { heroContent } from "@/constants/content";
+import { useMounted } from "@/hooks/use-mounted";
 
-interface HeroTerminalProps {
-  className?: string;
-}
+const statusColors = {
+  emerald: "text-emerald-400",
+  amber: "text-amber-400",
+  sky: "text-sky-400",
+} as const;
 
-const statusColors: Record<string, string> = {
-  Production: "text-emerald-400",
-  "In Progress": "text-amber-400",
-  "Every Day": "text-sky-400",
-};
+const ease = [0.22, 1, 0.36, 1] as const;
 
-export function HeroTerminal({ className }: HeroTerminalProps) {
-  const prefersReducedMotion = useReducedMotion();
+export function HeroTerminal() {
   const mounted = useMounted();
-  const { path, lines } = heroContent.terminal;
-
-  const content = (
-    <div
-      className={cn(
-        "terminal-glass overflow-hidden rounded-xl",
-        "font-mono text-[11px] leading-[1.7] sm:text-[13px]",
-        className,
-      )}
-      role="region"
-      aria-label="Development status terminal"
-    >
-      <div className="terminal-header flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
-        <span
-          className="size-2.5 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.4)] transition-opacity hover:opacity-80"
-          aria-hidden
-        />
-        <span
-          className="size-2.5 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.3)] transition-opacity hover:opacity-80"
-          aria-hidden
-        />
-        <span
-          className="size-2.5 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.3)] transition-opacity hover:opacity-80"
-          aria-hidden
-        />
-        <span className="text-muted-foreground/80 ml-2 text-[11px]">
-          <span className="text-sky-400/90">{path}</span>
-        </span>
-      </div>
-
-      <div className="space-y-3.5 p-4 pt-3.5">
-        {lines.map((line) => (
-          <div key={line.command} className="space-y-0.5">
-            <p>
-              <span className="text-primary/80" aria-hidden>
-                {"> "}
-              </span>
-              <span className="text-foreground/85">{line.command}</span>
-            </p>
-            <p className="pl-3">
-              <span className="text-emerald-400/90" aria-hidden>
-                ✓{" "}
-              </span>
-              <span
-                className={cn(
-                  "font-medium",
-                  statusColors[line.status] ?? "text-muted-foreground",
-                )}
-              >
-                {line.status}
-              </span>
-            </p>
-          </div>
-        ))}
-
-        <p className="flex items-center">
-          <span className="text-primary/80" aria-hidden>
-            {"> "}
-          </span>
-          <span
-            className="terminal-cursor bg-primary/90 ml-0.5 inline-block h-[1.1em] w-2 rounded-[1px] shadow-[0_0_6px_rgba(79,140,255,0.5)]"
-            aria-hidden
-          />
-          <span className="sr-only">Terminal cursor</span>
-        </p>
-      </div>
-    </div>
-  );
-
-  if (!mounted || prefersReducedMotion) {
-    return content;
-  }
+  const lines = heroContent.terminal.lines;
 
   return (
     <motion.div
-      initial={{ opacity: 1, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: heroAnimation.fadeDuration,
-        delay: heroAnimation.terminalDelay,
-        ease: [0, 0, 0.2, 1],
-      }}
+      initial={{ opacity: 1, y: 24 }}
+      animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 24 }}
+      transition={{ duration: 0.7, delay: 0.55, ease }}
+      className="max-w-md overflow-hidden rounded-xl border border-white/[0.1] bg-[rgba(15,23,42,0.72)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_12px_40px_-12px_rgba(0,0,0,0.6)] backdrop-blur-xl"
     >
-      {content}
+      <div className="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+        <span className="size-2.5 rounded-full bg-[#ff5f57]" />
+        <span className="size-2.5 rounded-full bg-[#febc2e]" />
+        <span className="size-2.5 rounded-full bg-[#28c840]" />
+        <span className="ml-2 font-mono text-[11px] text-white/40">
+          {heroContent.terminal.path}
+        </span>
+      </div>
+
+      <div className="space-y-2.5 p-4 font-mono text-[12px]">
+        {lines.map((line, index) => (
+          <div key={line.command}>
+            <motion.p
+              className="text-white/80"
+              initial={{ opacity: 1, x: -10 }}
+              animate={mounted ? { opacity: 1, x: 0 } : { opacity: 1, x: -10 }}
+              transition={{
+                duration: 0.4,
+                delay: 0.75 + index * 0.45,
+                ease,
+              }}
+            >
+              <span className="text-primary/80">{"> "}</span>
+              {line.command}
+            </motion.p>
+            <motion.p
+              className={cn("pl-3", statusColors[line.color])}
+              initial={{ opacity: 1, y: 6 }}
+              animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 6 }}
+              transition={{
+                duration: 0.35,
+                delay: 1.05 + index * 0.45,
+                ease,
+              }}
+            >
+              ✓ {line.status}
+            </motion.p>
+          </div>
+        ))}
+
+        <p className="flex items-center text-white/80">
+          <span className="text-primary/80">{"> "}</span>
+          <span className="terminal-cursor bg-primary ml-1 inline-block h-3.5 w-2 rounded-sm" />
+        </p>
+      </div>
     </motion.div>
   );
 }
