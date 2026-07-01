@@ -3,6 +3,7 @@ import { ResponsiveLayout } from "@/components/layout/responsive-layout";
 import { Background } from "@/components/ui/background";
 import { metadata, viewport } from "@/config/metadata";
 import { ThemeProvider } from "@/providers/theme-provider";
+import { SmoothScrollProvider } from "@/providers/smooth-scroll-provider";
 import "./globals.css";
 
 export { metadata, viewport };
@@ -16,9 +17,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang="en" className="dark" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          <Background variant="gradient">
-            <ResponsiveLayout>{children}</ResponsiveLayout>
-          </Background>
+          <SmoothScrollProvider>
+            <Background variant="gradient">
+              <ResponsiveLayout>{children}</ResponsiveLayout>
+            </Background>
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

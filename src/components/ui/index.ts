@@ -5,3 +5,4 @@ export { Container } from "./container";
 export { Heading, headingVariants } from "./heading";
 export type { HeadingProps } from "./heading";
 export { Section } from "./section";
+export { Reveal, StaggerReveal, StaggerItem, SectionHeader } from "./reveal";

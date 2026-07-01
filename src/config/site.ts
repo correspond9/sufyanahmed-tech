@@ -30,10 +30,10 @@ export const siteConfig = {
 
 export const navigationConfig = {
   main: [
-    { label: "Work", href: "/work" },
-    { label: "About", href: "/about" },
-    { label: "Blog", href: "/blog" },
-    { label: "Contact", href: "/contact" },
+    { label: "About", href: "#about" },
+    { label: "Work", href: "#projects" },
+    { label: "Process", href: "#process" },
+    { label: "Contact", href: "#contact" },
   ],
 } as const;
 

@@ -7,8 +7,8 @@ export const heroContent = {
   subtitle:
     "I design and build production-ready fintech platforms, SaaS products, trading systems, and cloud-native applications using modern engineering practices and AI-assisted development workflows.",
   cta: {
-    primary: { label: "Explore My Work", href: "/work" },
-    secondary: { label: "Get In Touch", href: "/contact" },
+    primary: { label: "Explore My Work", href: "#projects" },
+    secondary: { label: "Get In Touch", href: "#contact" },
   },
   terminal: {
     path: "~/sufyan",
