@@ -9,6 +9,12 @@ interface HeroTerminalProps {
   className?: string;
 }
 
+const statusColors: Record<string, string> = {
+  Production: "text-emerald-400",
+  "In Progress": "text-amber-400",
+  "Every Day": "text-sky-400",
+};
+
 export function HeroTerminal({ className }: HeroTerminalProps) {
   const prefersReducedMotion = useReducedMotion();
   const mounted = useMounted();
@@ -17,44 +23,62 @@ export function HeroTerminal({ className }: HeroTerminalProps) {
   const content = (
     <div
       className={cn(
-        "border-border/80 bg-surface/80 overflow-hidden rounded-lg border backdrop-blur-sm",
-        "font-mono text-xs leading-relaxed sm:text-sm",
+        "terminal-glass overflow-hidden rounded-xl",
+        "font-mono text-[11px] leading-[1.7] sm:text-[13px]",
         className,
       )}
       role="region"
       aria-label="Development status terminal"
     >
-      <div className="border-border/60 flex items-center gap-2 border-b px-4 py-3">
-        <span className="size-2.5 rounded-full bg-red-500/80" aria-hidden />
-        <span className="size-2.5 rounded-full bg-yellow-500/80" aria-hidden />
-        <span className="size-2.5 rounded-full bg-green-500/80" aria-hidden />
-        <span className="text-muted-foreground ml-2">{path}</span>
+      <div className="terminal-header flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+        <span
+          className="size-2.5 rounded-full bg-[#ff5f57] shadow-[0_0_6px_rgba(255,95,87,0.4)] transition-opacity hover:opacity-80"
+          aria-hidden
+        />
+        <span
+          className="size-2.5 rounded-full bg-[#febc2e] shadow-[0_0_6px_rgba(254,188,46,0.3)] transition-opacity hover:opacity-80"
+          aria-hidden
+        />
+        <span
+          className="size-2.5 rounded-full bg-[#28c840] shadow-[0_0_6px_rgba(40,200,64,0.3)] transition-opacity hover:opacity-80"
+          aria-hidden
+        />
+        <span className="text-muted-foreground/80 ml-2 text-[11px]">
+          <span className="text-sky-400/90">{path}</span>
+        </span>
       </div>
 
-      <div className="space-y-3 p-4">
+      <div className="space-y-3.5 p-4 pt-3.5">
         {lines.map((line) => (
-          <div key={line.command} className="space-y-1">
-            <p className="text-foreground/90">
-              <span className="text-primary" aria-hidden>
+          <div key={line.command} className="space-y-0.5">
+            <p>
+              <span className="text-primary/80" aria-hidden>
                 {"> "}
               </span>
-              {line.command}
+              <span className="text-foreground/85">{line.command}</span>
             </p>
-            <p className="text-muted-foreground">
-              <span className="text-green-400" aria-hidden>
+            <p className="pl-3">
+              <span className="text-emerald-400/90" aria-hidden>
                 ✓{" "}
               </span>
-              {line.status}
+              <span
+                className={cn(
+                  "font-medium",
+                  statusColors[line.status] ?? "text-muted-foreground",
+                )}
+              >
+                {line.status}
+              </span>
             </p>
           </div>
         ))}
 
-        <p className="text-foreground/90 flex items-center">
-          <span className="text-primary" aria-hidden>
+        <p className="flex items-center">
+          <span className="text-primary/80" aria-hidden>
             {"> "}
           </span>
           <span
-            className="terminal-cursor bg-primary ml-0.5 inline-block h-4 w-2"
+            className="terminal-cursor bg-primary/90 ml-0.5 inline-block h-[1.1em] w-2 rounded-[1px] shadow-[0_0_6px_rgba(79,140,255,0.5)]"
             aria-hidden
           />
           <span className="sr-only">Terminal cursor</span>
@@ -69,8 +93,8 @@ export function HeroTerminal({ className }: HeroTerminalProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: heroAnimation.fadeDuration,
         delay: heroAnimation.terminalDelay,

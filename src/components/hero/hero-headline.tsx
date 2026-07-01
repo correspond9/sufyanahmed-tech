@@ -16,7 +16,7 @@ const containerVariants = {
 };
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
@@ -29,9 +29,9 @@ const wordVariants = {
 
 function StaticHeadline() {
   return (
-    <h1 className="font-display text-foreground text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+    <h1 className="font-display text-foreground text-[2.75rem] leading-[1.02] font-bold tracking-[-0.03em] sm:text-6xl lg:text-7xl xl:text-[5.25rem]">
       <span className="block">{heroContent.headline.line1.join(" ")}</span>
-      <span className="from-primary to-purple block bg-gradient-to-r bg-clip-text text-transparent">
+      <span className="from-primary to-purple mt-1 block bg-gradient-to-r bg-clip-text text-transparent">
         {heroContent.headline.line2.join(" ")}
       </span>
     </h1>
@@ -52,7 +52,7 @@ export function HeroHeadline() {
 
   return (
     <h1
-      className="font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
+      className="font-display text-[2.75rem] leading-[1.02] font-bold tracking-[-0.03em] sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
       aria-label={`${heroContent.headline.line1.join(" ")} ${heroContent.headline.line2.join(" ")}`}
     >
       {lines.map((line, lineIndex) => (
@@ -61,7 +61,7 @@ export function HeroHeadline() {
           className={cn(
             "block overflow-hidden",
             lineIndex === 1 &&
-              "from-primary to-purple bg-gradient-to-r bg-clip-text text-transparent",
+              "from-primary to-purple mt-1 bg-gradient-to-r bg-clip-text text-transparent",
           )}
           variants={containerVariants}
           initial="hidden"
@@ -70,7 +70,7 @@ export function HeroHeadline() {
           {line.map((word) => (
             <motion.span
               key={word}
-              className="mr-[0.25em] inline-block"
+              className="mr-[0.22em] inline-block"
               variants={wordVariants}
               aria-hidden
             >

@@ -21,64 +21,42 @@ export function HeroVisualEffects({ className }: HeroVisualEffectsProps) {
       )}
       aria-hidden
     >
-      <div className="bg-grid absolute inset-0 opacity-40" />
+      {/* Layer 1 — fine grid */}
+      <div className="bg-grid-fine absolute inset-0 opacity-50" />
 
-      {animate && (
+      {/* Layer 2 — radial glow */}
+      <div className="hero-scene-glow absolute inset-0" />
+
+      {/* Layer 3 — animated gradient */}
+      {animate ? (
         <motion.div
-          className="bg-primary/10 absolute -top-1/4 left-1/4 h-[60%] w-[60%] rounded-full blur-[100px]"
+          className="hero-scene-aurora absolute inset-0"
           animate={{
-            opacity: [0.3, 0.5, 0.3],
-            scale: [1, 1.05, 1],
+            opacity: [0.5, 0.75, 0.5],
+            scale: [1, 1.03, 1],
           }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
+      ) : (
+        <div className="hero-scene-aurora-static absolute inset-0" />
       )}
 
-      <div
-        className={cn(
-          "absolute inset-0",
-          animate
-            ? "hero-aurora"
-            : "bg-[radial-gradient(ellipse_at_50%_50%,rgb(79_140_255/0.12),transparent_70%)]",
-        )}
-      />
+      {/* Layer 4 — floating particles */}
+      {animate && <HeroParticles />}
 
-      {animate && (
-        <>
-          <motion.div
-            className="bg-purple/20 absolute top-1/4 right-1/4 size-48 rounded-full blur-3xl"
-            animate={{ x: [0, 20, 0], y: [0, -15, 0] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="bg-primary/25 absolute bottom-1/3 left-1/3 size-32 rounded-full blur-2xl"
-            animate={{ x: [0, -15, 0], y: [0, 20, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="bg-electric/15 absolute top-1/2 right-1/3 size-24 rounded-full blur-2xl"
-            animate={{ x: [0, 10, 0], y: [0, -10, 0] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <HeroParticles />
-        </>
-      )}
+      {/* Layer 6 — foreground lighting (applied after 3D in canvas wrapper) */}
     </div>
   );
 }
 
 function HeroParticles() {
-  const particles = Array.from({ length: 24 }, (_, index) => ({
+  const particles = Array.from({ length: 18 }, (_, index) => ({
     id: index,
-    left: `${(index * 17 + 11) % 100}%`,
-    top: `${(index * 23 + 7) % 100}%`,
-    size: 2 + (index % 3),
-    duration: 4 + (index % 5),
-    delay: (index % 8) * 0.3,
+    left: `${(index * 19 + 13) % 100}%`,
+    top: `${(index * 27 + 9) % 100}%`,
+    size: 1.5 + (index % 3),
+    duration: 5 + (index % 6),
+    delay: (index % 7) * 0.4,
   }));
 
   return (
@@ -86,7 +64,7 @@ function HeroParticles() {
       {particles.map((particle) => (
         <motion.span
           key={particle.id}
-          className="bg-primary/40 absolute rounded-full"
+          className="bg-primary/30 absolute rounded-full"
           style={{
             left: particle.left,
             top: particle.top,
@@ -94,8 +72,8 @@ function HeroParticles() {
             height: particle.size,
           }}
           animate={{
-            opacity: [0.2, 0.8, 0.2],
-            y: [0, -20, 0],
+            opacity: [0.15, 0.6, 0.15],
+            y: [0, -16, 0],
           }}
           transition={{
             duration: particle.duration,
@@ -106,5 +84,22 @@ function HeroParticles() {
         />
       ))}
     </>
+  );
+}
+
+export function HeroSceneForegroundLight({
+  className,
+}: {
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn("pointer-events-none absolute inset-0 z-[2]", className)}
+      aria-hidden
+    >
+      <div className="from-primary/[0.04] to-purple/[0.05] absolute inset-0 bg-gradient-to-br via-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_60%_40%,transparent_20%,rgba(10,15,31,0.55)_75%)]" />
+      <div className="from-primary/[0.03] absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b to-transparent" />
+    </div>
   );
 }

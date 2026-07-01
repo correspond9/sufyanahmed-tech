@@ -33,14 +33,17 @@ function StaticCta() {
   const { primary, secondary } = heroContent.cta;
 
   return (
-    <div className="flex flex-wrap gap-4">
-      <Button asChild size="lg">
+    <div className="flex flex-wrap gap-3.5 pt-1">
+      <Button asChild variant="premium" size="lg">
         <Link href={primary.href}>
           {primary.label}
-          <ArrowRight aria-hidden />
+          <ArrowRight
+            aria-hidden
+            className="transition-transform duration-300 group-hover:translate-x-0.5"
+          />
         </Link>
       </Button>
-      <Button asChild variant="outline" size="lg">
+      <Button asChild variant="premium-outline" size="lg">
         <Link href={secondary.href}>{secondary.label}</Link>
       </Button>
     </div>
@@ -58,21 +61,24 @@ export function HeroCta() {
 
   return (
     <motion.div
-      className="flex flex-wrap gap-4"
+      className="flex flex-wrap gap-3.5 pt-1"
       variants={buttonContainerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.div variants={buttonVariants}>
-        <Button asChild size="lg">
+        <Button asChild variant="premium" size="lg" className="group">
           <Link href={primary.href}>
             {primary.label}
-            <ArrowRight aria-hidden />
+            <ArrowRight
+              aria-hidden
+              className="transition-transform duration-300 group-hover:translate-x-0.5"
+            />
           </Link>
         </Button>
       </motion.div>
       <motion.div variants={buttonVariants}>
-        <Button asChild variant="outline" size="lg">
+        <Button asChild variant="premium-outline" size="lg">
           <Link href={secondary.href}>{secondary.label}</Link>
         </Button>
       </motion.div>
