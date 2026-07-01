@@ -20,7 +20,7 @@ export function HeroSubtitle() {
   return (
     <motion.p
       className="text-muted-foreground/90 max-w-[34rem] text-base leading-[1.75] sm:text-[17px]"
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 1, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
         duration: heroAnimation.fadeDuration,
@@ -59,7 +59,7 @@ export function HeroEyebrow() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 6 }}
+      initial={{ opacity: 1, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0, 0, 0.2, 1] }}
     >

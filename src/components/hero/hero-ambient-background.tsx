@@ -20,7 +20,7 @@ export function HeroAmbientBackground({
       className={cn("pointer-events-none absolute inset-0", className)}
       aria-hidden
     >
-      <div className="hero-noise absolute inset-0 opacity-[0.35]" />
+      <div className="hero-noise absolute inset-0" />
       <div className="bg-grid absolute inset-0 opacity-[0.18]" />
       <div className="hero-radial-glow absolute inset-0" />
 

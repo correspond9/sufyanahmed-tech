@@ -1,19 +1,10 @@
 "use client";
 
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import type { ReactNode } from "react";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
-
-const defaultVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, ease: [0, 0, 0.2, 1] },
-  },
-};
 
 interface RevealProps {
   children: ReactNode;
@@ -34,30 +25,42 @@ export function Reveal({
   const mounted = useMounted();
   const { ref, inView } = useInView({
     triggerOnce: once,
-    threshold: 0.12,
-    rootMargin: "-40px",
+    threshold: 0.08,
+    rootMargin: "0px 0px -5% 0px",
   });
 
+  if (!mounted || prefersReducedMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
+
   const offsets = {
-    up: { y: 24, x: 0 },
-    down: { y: -24, x: 0 },
-    left: { y: 0, x: 24 },
-    right: { y: 0, x: -24 },
-    none: { y: 0, x: 0 },
+    up: 20,
+    down: -20,
+    left: 20,
+    right: -20,
+    none: 0,
   };
 
+  const axis = direction === "left" || direction === "right" ? "x" : "y";
   const offset = offsets[direction];
-
-  if (!mounted || prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
-  }
 
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, ...offset }}
-      animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, ...offset }}
+      initial={{ opacity: 1, x: 0, y: 0 }}
+      animate={
+        inView
+          ? { opacity: 1, x: 0, y: 0 }
+          : {
+              opacity: 1,
+              [axis]: offset,
+            }
+      }
       transition={{ duration: 0.55, delay, ease: [0, 0, 0.2, 1] }}
     >
       {children}
@@ -80,12 +83,16 @@ export function StaggerReveal({
   const mounted = useMounted();
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-40px",
+    threshold: 0.08,
+    rootMargin: "0px 0px -5% 0px",
   });
 
   if (!mounted || prefersReducedMotion) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
   }
 
   return (
@@ -112,7 +119,17 @@ export function StaggerItem({
   className?: string;
 }) {
   return (
-    <motion.div className={className} variants={defaultVariants}>
+    <motion.div
+      className={className}
+      variants={{
+        hidden: { opacity: 1, y: 16 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, ease: [0, 0, 0.2, 1] },
+        },
+      }}
+    >
       {children}
     </motion.div>
   );

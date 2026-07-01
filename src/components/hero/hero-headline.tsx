@@ -16,7 +16,7 @@ const containerVariants = {
 };
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 1, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
