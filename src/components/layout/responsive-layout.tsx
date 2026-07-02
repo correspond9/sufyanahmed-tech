@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 import { SocialSidebar } from "@/components/site/social-sidebar";
+import { AiChatWidget } from "@/components/ai/chat-widget";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export function ResponsiveLayout({ children }: ResponsiveLayoutProps) {
         {children}
       </main>
       <SiteFooter />
+      <AiChatWidget />
     </div>
   );
 }

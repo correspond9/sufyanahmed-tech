@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { ProjectPreview } from "@/components/sections/project-preview";
 import { Container } from "@/components/ui/container";
 import { GlassPanel } from "@/components/ui/glass";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { siteConfig } from "@/config/site";
-import { projectsContent } from "@/constants/content";
+import { getProjects } from "@/lib/content/projects";
 import { routes } from "@/lib/navigation";
 import { cn, isExternalLink } from "@/lib/utils";
 
@@ -30,6 +30,8 @@ const statusStyles = {
 };
 
 export default function ProjectsPage() {
+  const projects = getProjects();
+
   return (
     <>
       <PageHeader
@@ -40,7 +42,7 @@ export default function ProjectsPage() {
       <section className="pb-20 lg:pb-28">
         <Container>
           <StaggerReveal className="space-y-8">
-            {projectsContent.items.map((project) => (
+            {projects.map((project) => (
               <StaggerItem key={project.id}>
                 <GlassPanel
                   id={project.id}
@@ -92,25 +94,34 @@ export default function ProjectsPage() {
                           </span>
                         ))}
                       </div>
-                      {isExternalLink(project.href) ? (
-                        <a
-                          href={project.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-primary/80 mt-auto inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
-                        >
-                          {project.linkLabel}
-                          <ExternalLink className="size-3.5" />
-                        </a>
-                      ) : (
+                      <div className="mt-auto flex flex-wrap items-center gap-4">
+                        {isExternalLink(project.href) ? (
+                          <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
+                          >
+                            {project.linkLabel}
+                            <ExternalLink className="size-3.5" />
+                          </a>
+                        ) : (
+                          <Link
+                            href={project.href}
+                            className="text-primary hover:text-primary/80 inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
+                          >
+                            {project.linkLabel}
+                            <ExternalLink className="size-3.5" />
+                          </Link>
+                        )}
                         <Link
-                          href={project.href}
-                          className="text-primary hover:text-primary/80 mt-auto inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
+                          href={`${routes.projects}/${project.id}`}
+                          className="inline-flex items-center gap-1 text-[13px] text-white/50 hover:text-white/80"
                         >
-                          {project.linkLabel}
-                          <ExternalLink className="size-3.5" />
+                          Read case study
+                          <ArrowRight className="size-3.5" />
                         </Link>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </GlassPanel>

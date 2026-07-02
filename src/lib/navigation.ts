@@ -9,6 +9,7 @@ export function resolveNavHref(href: string): string {
 export const routes = {
   home: "/",
   projects: "/projects",
+  blog: "/blog",
   certifications: "/certifications",
   contact: "/contact",
   privacy: "/privacy",

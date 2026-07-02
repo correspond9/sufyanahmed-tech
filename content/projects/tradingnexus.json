@@ -1,0 +1,47 @@
+{
+  "id": "tradingnexus",
+  "name": "TradingNexus",
+  "description": "A production-ready trading platform with real-time data, premium UX, and scalable architecture.",
+  "longDescription": "TradingNexus is a full-stack trading platform built for serious market participants. It combines real-time market data, strategy tooling, and a premium user experience on a cloud-native architecture designed to scale.",
+  "highlights": [
+    "Real-time market data and analytics",
+    "Production deployment on Coolify with Docker",
+    "Modern Next.js frontend with FastAPI backend",
+    "PostgreSQL and Redis for performance at scale"
+  ],
+  "status": "Live",
+  "tags": ["Next.js", "FastAPI", "PostgreSQL", "Docker", "Coolify"],
+  "href": "https://tradingnexus.pro/",
+  "linkLabel": "Visit Live Platform",
+  "theme": "dark",
+  "caseStudy": {
+    "challenge": "Build a trading platform that feels premium, handles live market workflows, and can run reliably in production — without compromising on UX or architecture quality.",
+    "solution": "Designed a modular system with a Next.js frontend, FastAPI backend, PostgreSQL for persistence, and Redis for caching. Deployed via Docker on Coolify with clear separation between data, API, and presentation layers.",
+    "outcome": "A live production platform at tradingnexus.pro with real-time capabilities, scalable infrastructure, and a user experience built to professional standards."
+  },
+  "architecture": {
+    "summary": "Three-tier cloud-native architecture optimized for real-time trading workflows and horizontal scaling.",
+    "layers": [
+      {
+        "name": "Presentation",
+        "tech": "Next.js, React, TypeScript",
+        "role": "Premium UI, real-time dashboards, client-side state"
+      },
+      {
+        "name": "API",
+        "tech": "FastAPI, Python",
+        "role": "Business logic, market data orchestration, authentication"
+      },
+      {
+        "name": "Data",
+        "tech": "PostgreSQL, Redis",
+        "role": "Persistent storage and low-latency caching"
+      },
+      {
+        "name": "Infrastructure",
+        "tech": "Docker, Coolify, Traefik",
+        "role": "Container orchestration, SSL, zero-downtime deploys"
+      }
+    ]
+  }
+}

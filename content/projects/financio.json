@@ -1,0 +1,42 @@
+{
+  "id": "financio",
+  "name": "Financio",
+  "description": "Personal finance management platform with intuitive dashboards and smart insights.",
+  "longDescription": "Financio helps users understand spending, savings, and financial goals through clean dashboards and actionable insights — built with the same product discipline applied to enterprise software.",
+  "highlights": [
+    "Intuitive financial dashboards",
+    "Smart categorization and insights",
+    "Responsive, mobile-first experience",
+    "Built for clarity and daily use"
+  ],
+  "status": "Live",
+  "tags": ["Next.js", "Node.js", "MongoDB"],
+  "href": "https://www.financio.pro/",
+  "linkLabel": "Visit Live Platform",
+  "theme": "light",
+  "caseStudy": {
+    "challenge": "Personal finance tools often overwhelm users with complexity. The goal was clarity — help people understand their money without friction.",
+    "solution": "Built a focused SaaS experience with clean dashboards, thoughtful categorization, and a mobile-first layout that prioritizes the most important numbers first.",
+    "outcome": "A live platform at financio.pro that turns financial data into actionable daily insights."
+  },
+  "architecture": {
+    "summary": "Full-stack SaaS with a Next.js frontend and Node.js API backed by MongoDB for flexible financial document storage.",
+    "layers": [
+      {
+        "name": "Frontend",
+        "tech": "Next.js, React",
+        "role": "Dashboards, charts, responsive layouts"
+      },
+      {
+        "name": "Backend",
+        "tech": "Node.js",
+        "role": "REST APIs, business rules, user sessions"
+      },
+      {
+        "name": "Database",
+        "tech": "MongoDB",
+        "role": "Flexible schema for transactions and user data"
+      }
+    ]
+  }
+}

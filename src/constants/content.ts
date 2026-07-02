@@ -10,6 +10,7 @@ export const siteContent = {
     { label: "Home", href: routes.home },
     { label: "About", href: "/#about" },
     { label: "Projects", href: routes.projects },
+    { label: "Blog", href: routes.blog },
     { label: "Services", href: "/#services" },
     { label: "Contact", href: routes.contact },
   ],
@@ -148,71 +149,10 @@ export const aboutContent = {
   ],
 } as const;
 
-export type ProjectStatus = "Live" | "In Progress";
-
 export const projectsContent = {
   id: "projects",
   title: "Products I'm Proud Of.",
   viewAll: { label: "View All Projects", href: routes.projects },
-  items: [
-    {
-      id: "tradingnexus",
-      name: "TradingNexus",
-      description:
-        "A production-ready trading platform with real-time data, premium UX, and scalable architecture.",
-      longDescription:
-        "TradingNexus is a full-stack trading platform built for serious market participants. It combines real-time market data, strategy tooling, and a premium user experience on a cloud-native architecture designed to scale.",
-      highlights: [
-        "Real-time market data and analytics",
-        "Production deployment on Coolify with Docker",
-        "Modern Next.js frontend with FastAPI backend",
-        "PostgreSQL and Redis for performance at scale",
-      ],
-      status: "Live" as const,
-      tags: ["Next.js", "FastAPI", "PostgreSQL", "Docker", "Coolify"],
-      href: "https://tradingnexus.pro/",
-      linkLabel: "Visit Live Platform",
-      theme: "dark" as const,
-    },
-    {
-      id: "financio",
-      name: "Financio",
-      description:
-        "Personal finance management platform with intuitive dashboards and smart insights.",
-      longDescription:
-        "Financio helps users understand spending, savings, and financial goals through clean dashboards and actionable insights — built with the same product discipline applied to enterprise software.",
-      highlights: [
-        "Intuitive financial dashboards",
-        "Smart categorization and insights",
-        "Responsive, mobile-first experience",
-        "Built for clarity and daily use",
-      ],
-      status: "Live" as const,
-      tags: ["Next.js", "Node.js", "MongoDB"],
-      href: "https://www.financio.pro/",
-      linkLabel: "Visit Live Platform",
-      theme: "light" as const,
-    },
-    {
-      id: "xchangebyte",
-      name: "XchangeByte",
-      description:
-        "Next-generation exchange platform engineered for scalability and cloud-native deployment.",
-      longDescription:
-        "XchangeByte is an exchange platform in active development, focused on scalable architecture, secure transactions, and a foundation ready for cloud-native deployment.",
-      highlights: [
-        "Cloud-native architecture planning",
-        "Scalable exchange infrastructure",
-        "Security-first design approach",
-        "Currently in active development",
-      ],
-      status: "In Progress" as const,
-      tags: ["Next.js", "TypeScript", "Cloud"],
-      href: "https://www.xchangebyte.com/",
-      linkLabel: "Visit Website",
-      theme: "dark" as const,
-    },
-  ],
 } as const;
 
 export const servicesContent = {

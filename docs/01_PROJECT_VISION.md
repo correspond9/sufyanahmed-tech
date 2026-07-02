@@ -82,10 +82,6 @@ Build a premium digital identity capable of attracting:
 
 
 
-• Speaking opportunities
-
-
-
 • Strategic partnerships
 
 
@@ -122,23 +118,7 @@ Future versions will include:
 
 
 
-• Speaking
-
-
-
-• Open Source Contributions
-
-
-
-• Resume
-
-
-
 • Contact Portal
-
-
-
-• Client Dashboard
 
 
 
@@ -418,23 +398,7 @@ XchangeByte
 
 
 
-Open Source
-
-
-
-↓
-
-
-
 Blog
-
-
-
-↓
-
-
-
-Speaking
 
 
 

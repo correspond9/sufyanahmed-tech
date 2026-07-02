@@ -4,6 +4,8 @@ import { projectsContent } from "@/constants/content";
 import { Container } from "@/components/ui/container";
 import { GlassPanel, SectionTitle } from "@/components/ui/glass";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
+import { getProjects } from "@/lib/content/projects";
+import { routes } from "@/lib/navigation";
 import { cn, isExternalLink } from "@/lib/utils";
 import { ProjectPreview } from "@/components/sections/project-preview";
 
@@ -13,6 +15,8 @@ const statusStyles = {
 };
 
 export function ProjectsSection() {
+  const projects = getProjects();
+
   return (
     <section id={projectsContent.id} className="relative py-20 lg:py-28">
       <div
@@ -36,7 +40,7 @@ export function ProjectsSection() {
         </div>
 
         <StaggerReveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projectsContent.items.map((project) => (
+          {projects.map((project) => (
             <StaggerItem key={project.id}>
               <GlassPanel
                 className="group flex h-full flex-col overflow-hidden p-0"
@@ -76,25 +80,33 @@ export function ProjectsSection() {
                       </span>
                     ))}
                   </div>
-                  {isExternalLink(project.href) ? (
-                    <a
-                      href={project.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
-                    >
-                      {project.linkLabel}
-                      <ExternalLink className="size-3" />
-                    </a>
-                  ) : (
+                  <div className="flex flex-wrap items-center gap-4">
+                    {isExternalLink(project.href) ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
+                      >
+                        {project.linkLabel}
+                        <ExternalLink className="size-3" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={project.href}
+                        className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
+                      >
+                        {project.linkLabel}
+                        <ExternalLink className="size-3" />
+                      </Link>
+                    )}
                     <Link
-                      href={project.href}
-                      className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
+                      href={`${routes.projects}/${project.id}`}
+                      className="text-[12px] text-white/45 transition-colors hover:text-white/70"
                     >
-                      {project.linkLabel}
-                      <ExternalLink className="size-3" />
+                      Case study →
                     </Link>
-                  )}
+                  </div>
                 </div>
               </GlassPanel>
             </StaggerItem>
