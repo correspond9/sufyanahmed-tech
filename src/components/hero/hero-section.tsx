@@ -22,16 +22,12 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 function EcosystemFallback() {
   return (
-    <div className="hero-orbit-stage relative flex h-full min-h-[360px] w-full items-center justify-center">
+    <div className="hero-orbit-stage relative flex h-full min-h-[360px] w-full items-center justify-center overflow-hidden">
       <div className="hero-orbit-halo absolute top-1/2 left-1/2 size-64 -translate-x-1/2 -translate-y-1/2" />
       <div className="relative">
         <div className="hero-orbit-fallback-ring border-primary/25 absolute inset-0 rounded-full border" />
         <div className="hero-orbit-fallback-ring hero-orbit-fallback-ring--delay border-purple/20 absolute inset-[-18px] rounded-full border" />
-        <div className="hero-orbit-fallback-core border-primary/35 relative flex size-28 items-center justify-center rounded-full border bg-[#020617]/80 shadow-[0_0_60px_rgba(79,140,255,0.35)]">
-          <span className="bg-gradient-to-br from-[#4F8CFF] to-[#6D5DF6] bg-clip-text text-lg font-bold text-transparent">
-            SA
-          </span>
-        </div>
+        <div className="hero-orbit-fallback-core border-primary/35 relative size-28 rounded-full border bg-[#020617]/80 shadow-[0_0_60px_rgba(79,140,255,0.35)]" />
       </div>
     </div>
   );
@@ -140,7 +136,7 @@ export function HeroSection() {
               mounted ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 0.96 }
             }
             transition={{ duration: 1.1, delay: 0.2, ease }}
-            className="relative min-h-[380px] sm:min-h-[440px] lg:min-h-[520px]"
+            className="relative min-h-[400px] overflow-hidden px-2 sm:min-h-[460px] lg:min-h-[560px] lg:px-4"
           >
             <SceneErrorBoundary fallback={<EcosystemFallback />}>
               <EcosystemCanvas />

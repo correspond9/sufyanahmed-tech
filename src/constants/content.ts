@@ -1,17 +1,18 @@
+import { routes } from "@/lib/navigation";
+
 export const siteContent = {
   brand: {
     initials: "SA",
-    name: "SufyanAhmed.Tech",
+    name: "Sufyan A. Ahmed",
     tagline: "Building products that scale. Solving problems that matter.",
   },
   nav: [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Process", href: "#process" },
-    { label: "Stack", href: "#stack" },
-    { label: "Certifications", href: "#certifications" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: routes.home },
+    { label: "About", href: "/#about" },
+    { label: "Projects", href: routes.projects },
+    { label: "Blog", href: routes.blog },
+    { label: "Services", href: "/#services" },
+    { label: "Contact", href: routes.contact },
   ],
   social: [
     { label: "GitHub", href: "https://github.com/sufyanahmed" },
@@ -31,14 +32,19 @@ export const heroContent = {
   subtitle:
     "I design and build production-ready fintech platforms, SaaS products, trading systems, and cloud-native applications using modern engineering practices and AI-assisted development workflows.",
   cta: {
-    primary: { label: "See What I've Built", href: "#projects" },
-    secondary: { label: "Get In Touch", href: "#contact" },
+    primary: { label: "See What I've Built", href: "/#projects" },
+    secondary: { label: "Get In Touch", href: routes.contact },
   },
   terminal: {
     path: "~/sufyan",
     lines: [
       {
         command: "Building TradingNexus...",
+        status: "Production",
+        color: "emerald",
+      },
+      {
+        command: "Building Car-Market...",
         status: "Production",
         color: "emerald",
       },
@@ -56,49 +62,56 @@ export const heroContent = {
       subtitle: "Live Platform",
       icon: "trending",
       ring: 0,
-      angle: 25,
+      angle: 20,
     },
     {
       label: "Financio",
       subtitle: "Finance SaaS",
       icon: "wallet",
       ring: 0,
-      angle: 155,
+      angle: 200,
+    },
+    {
+      label: "Car-Market",
+      subtitle: "Live Platform",
+      icon: "car",
+      ring: 1,
+      angle: 65,
     },
     {
       label: "XchangeByte",
       subtitle: "In Progress",
       icon: "exchange",
-      ring: 0,
-      angle: 285,
+      ring: 1,
+      angle: 245,
     },
     {
       label: "AI & Automation",
       subtitle: "Workflow Engine",
       icon: "brain",
       ring: 1,
-      angle: 55,
+      angle: 155,
     },
     {
       label: "Open Source",
       subtitle: "Community",
       icon: "git",
-      ring: 1,
-      angle: 195,
+      ring: 2,
+      angle: 35,
     },
     {
       label: "System Design",
       subtitle: "Architecture",
       icon: "layers",
       ring: 2,
-      angle: 110,
+      angle: 155,
     },
     {
       label: "Cloud Architecture",
       subtitle: "Scalable • Secure",
       icon: "cloud",
       ring: 2,
-      angle: 250,
+      angle: 275,
     },
   ],
 } as const;
@@ -151,39 +164,48 @@ export const aboutContent = {
 export const projectsContent = {
   id: "projects",
   title: "Products I'm Proud Of.",
-  viewAll: { label: "View All Projects", href: "#projects" },
+  viewAll: { label: "View All Projects", href: routes.projects },
+} as const;
+
+export const servicesContent = {
+  id: "services",
+  title: "How I Can Help",
+  description:
+    "From product strategy to production deployment — I partner with founders and teams to ship software that earns trust.",
   items: [
     {
-      id: "tradingnexus",
-      name: "TradingNexus",
+      id: "product-architecture",
+      title: "Product Architecture",
       description:
-        "A production-ready trading platform with real-time data, premium UX, and scalable architecture.",
-      status: "Live" as const,
-      tags: ["Next.js", "FastAPI", "PostgreSQL"],
-      href: "#contact",
-      theme: "dark" as const,
+        "Turn ideas into clear system designs, technical roadmaps, and scalable foundations before a single line of code is written.",
+      icon: "layers",
     },
     {
-      id: "financio",
-      name: "Financio",
+      id: "fintech-saas",
+      title: "FinTech & SaaS Development",
       description:
-        "Personal finance management platform with intuitive dashboards and smart insights.",
-      status: "Live" as const,
-      tags: ["Next.js", "Node.js", "MongoDB"],
-      href: "#contact",
-      theme: "light" as const,
+        "Build production-grade platforms — trading systems, finance tools, and SaaS products — with modern stacks and premium UX.",
+      icon: "chart",
     },
     {
-      id: "xchangebyte",
-      name: "XchangeByte",
+      id: "ai-engineering",
+      title: "AI-Assisted Engineering",
       description:
-        "Next-generation exchange platform engineered for scalability and cloud-native deployment.",
-      status: "In Progress" as const,
-      tags: ["Next.js"],
-      href: "#contact",
-      theme: "dark" as const,
+        "Accelerate delivery with AI-assisted workflows while maintaining code quality, security, and long-term maintainability.",
+      icon: "brain",
+    },
+    {
+      id: "consulting",
+      title: "Technical Consulting",
+      description:
+        "Get honest guidance on architecture decisions, stack choices, deployment strategy, and product engineering best practices.",
+      icon: "message",
     },
   ],
+  cta: {
+    label: "Discuss Your Project",
+    href: routes.contact,
+  },
 } as const;
 
 export const processContent = {
@@ -217,26 +239,159 @@ export const techStackContent = {
 export const certificationsContent = {
   id: "certifications",
   title: "Certifications",
-  viewAll: { label: "View All Certifications", href: "#certifications" },
+  description:
+    "Formal credentials across finance, technology, and fitness — reflecting a multidisciplinary foundation.",
+  viewAll: { label: "View All Certifications", href: routes.certifications },
   items: [
-    { name: "NISM", subtitle: "Certified" },
-    { name: "NSE", subtitle: "Certified" },
-    { name: "NIIT", subtitle: "Certified" },
-    { name: "Gold's Gym", subtitle: "Trainer" },
+    {
+      id: "nism",
+      name: "NISM",
+      subtitle: "Certified",
+      category: "Finance & Markets",
+      description:
+        "National Institute of Securities Markets certification — foundational expertise in Indian securities markets and regulatory frameworks.",
+    },
+    {
+      id: "nse",
+      name: "NSE",
+      subtitle: "Certified",
+      category: "Finance & Markets",
+      description:
+        "National Stock Exchange certification — practical knowledge of market operations, trading systems, and financial instruments.",
+    },
+    {
+      id: "niit",
+      name: "NIIT",
+      subtitle: "Certified",
+      category: "Technology",
+      description:
+        "NIIT certification in software and technology — structured training in programming, systems, and professional software development.",
+    },
+    {
+      id: "golds-gym",
+      name: "Gold's Gym",
+      subtitle: "Trainer",
+      category: "Fitness",
+      description:
+        "Certified fitness trainer — discipline, consistency, and the mindset to show up every day, applied to product building.",
+    },
   ],
 } as const;
 
 export const contactContent = {
   id: "contact",
   title: "Have a project or opportunity?",
-  cta: { label: "Start a Conversation", href: "mailto:hello@sufyanahmed.tech" },
+  description:
+    "Whether you're launching a product, scaling a platform, or exploring a partnership — I'd like to hear from you.",
+  cta: { label: "Start a Conversation", href: routes.contact },
   email: "hello@sufyanahmed.tech",
+  topics: [
+    "Product development",
+    "FinTech & trading platforms",
+    "Technical consulting",
+    "Partnerships & collaborations",
+    "Speaking & workshops",
+  ],
+} as const;
+
+export const contactFormContent = {
+  title: "Send a Message",
+  description:
+    "Fill out the form below and I'll get back to you within 1–2 business days.",
+  fields: {
+    name: "Full Name",
+    email: "Email Address",
+    subject: "Subject",
+    message: "Message",
+  },
+  submit: "Send Message",
+  success:
+    "Thank you! Your message has been sent. I'll respond as soon as possible.",
+  error:
+    "Something went wrong. Please try again or email hello@sufyanahmed.tech directly.",
+  notConfigured:
+    "The contact form email is not set up on the server yet. Please email hello@sufyanahmed.tech directly.",
 } as const;
 
 export const footerContent = {
   copyright: "© 2026 Sufyan Ahmed. All rights reserved.",
   links: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Use", href: "#" },
+    { label: "Privacy Policy", href: routes.privacy },
+    { label: "Terms of Use", href: routes.terms },
   ],
+} as const;
+
+export const legalContent = {
+  privacy: {
+    title: "Privacy Policy",
+    updated: "July 1, 2026",
+    sections: [
+      {
+        heading: "Overview",
+        body: 'SufyanAhmed.Tech ("we", "this site") respects your privacy. This policy explains what information we collect when you use this website and how we use it.',
+      },
+      {
+        heading: "Information We Collect",
+        body: "When you submit the contact form, we collect your name, email address, subject, and message. We may also collect standard technical data such as browser type and IP address through server logs for security and performance.",
+      },
+      {
+        heading: "How We Use Your Information",
+        body: "Contact form submissions are used solely to respond to your inquiry. We do not sell, rent, or share your personal information with third parties for marketing purposes.",
+      },
+      {
+        heading: "Data Retention",
+        body: "Messages are retained only as long as needed to respond to your inquiry and maintain a record of our communication.",
+      },
+      {
+        heading: "Third-Party Services",
+        body: "This site may use third-party services for hosting, analytics, or form delivery. These providers process data according to their own privacy policies.",
+      },
+      {
+        heading: "Your Rights",
+        body: "You may request access to, correction of, or deletion of your personal data by contacting hello@sufyanahmed.tech.",
+      },
+      {
+        heading: "Contact",
+        body: "For privacy-related questions, email hello@sufyanahmed.tech.",
+      },
+    ],
+  },
+  terms: {
+    title: "Terms of Use",
+    updated: "July 1, 2026",
+    sections: [
+      {
+        heading: "Acceptance",
+        body: "By accessing and using SufyanAhmed.Tech, you agree to these Terms of Use. If you do not agree, please do not use this website.",
+      },
+      {
+        heading: "Use of Content",
+        body: "All content on this site — including text, design, code samples, and branding — is owned by Sufyan Ahmed Ansari unless otherwise stated. You may not copy, reproduce, or distribute content without written permission.",
+      },
+      {
+        heading: "No Professional Advice",
+        body: "Information on this site is provided for general informational purposes. It does not constitute financial, legal, or professional advice.",
+      },
+      {
+        heading: "Project Representations",
+        body: "Projects and experience described on this site reflect genuine work. Descriptions are presented accurately and without exaggeration.",
+      },
+      {
+        heading: "External Links",
+        body: "This site may link to third-party websites. We are not responsible for the content or practices of external sites.",
+      },
+      {
+        heading: "Limitation of Liability",
+        body: 'This site is provided "as is" without warranties. Sufyan Ahmed Ansari is not liable for any damages arising from use of this website.',
+      },
+      {
+        heading: "Changes",
+        body: "These terms may be updated at any time. Continued use of the site after changes constitutes acceptance of the updated terms.",
+      },
+      {
+        heading: "Contact",
+        body: "For questions about these terms, email hello@sufyanahmed.tech.",
+      },
+    ],
+  },
 } as const;

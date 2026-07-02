@@ -1,0 +1,44 @@
+{
+  "id": "xchangebyte",
+  "name": "XchangeByte",
+  "description": "Next-generation exchange platform engineered for scalability and cloud-native deployment.",
+  "longDescription": "XchangeByte is an exchange platform in active development, focused on scalable architecture, secure transactions, and a foundation ready for cloud-native deployment.",
+  "highlights": [
+    "Cloud-native architecture planning",
+    "Scalable exchange infrastructure",
+    "Security-first design approach",
+    "Currently in active development"
+  ],
+  "status": "In Progress",
+  "tags": ["Next.js", "TypeScript", "Cloud"],
+  "href": "https://www.xchangebyte.com/",
+  "linkLabel": "Visit Website",
+  "theme": "dark",
+  "logo": "/assets/logos/XchangeByte-logo.png",
+  "preview": "/assets/previews/xchangebyte.png",
+  "caseStudy": {
+    "challenge": "Design an exchange platform foundation that can scale securely from day one, without over-engineering before product-market fit.",
+    "solution": "Starting with a TypeScript-first Next.js codebase, clear domain boundaries, and cloud-native deployment patterns planned from the architecture phase.",
+    "outcome": "Active development at xchangebyte.com with architecture decisions documented before scale demands them."
+  },
+  "architecture": {
+    "summary": "Modular exchange architecture being built for cloud-native deployment and secure transaction processing.",
+    "layers": [
+      {
+        "name": "Client",
+        "tech": "Next.js, TypeScript",
+        "role": "Exchange UI, order flows, account management"
+      },
+      {
+        "name": "Services",
+        "tech": "TypeScript / Node",
+        "role": "Order matching, wallet logic, API gateway (planned)"
+      },
+      {
+        "name": "Cloud",
+        "tech": "Container-ready infrastructure",
+        "role": "Scalable deployment, observability, security boundaries"
+      }
+    ]
+  }
+}

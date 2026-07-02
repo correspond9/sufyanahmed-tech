@@ -1,0 +1,49 @@
+{
+  "id": "auto-linkpc",
+  "name": "Car-Market",
+  "description": "Production marketplace to buy and sell used cars in India — listings from individuals and verified dealers.",
+  "longDescription": "Car-Market (auto.linkpc.net) is a live used-car marketplace built for the Indian market. It connects buyers and sellers through searchable listings, dealer verification, city-based browsing, and companion mobile apps — engineered as a multi-surface product from API to web and native clients.",
+  "highlights": [
+    "Live production marketplace at auto.linkpc.net",
+    "Listings from individuals and verified dealers",
+    "City-based search across major Indian markets",
+    "Web app plus Android and iOS companion apps"
+  ],
+  "status": "Live",
+  "tags": ["Next.js", "FastAPI", "PostgreSQL", "Redis", "Kotlin", "Swift"],
+  "href": "https://auto.linkpc.net/",
+  "linkLabel": "Visit Live Platform",
+  "theme": "light",
+  "logo": "/assets/logos/Autolink-logo.png",
+  "preview": "/assets/previews/auto-linkpc.png",
+  "caseStudy": {
+    "challenge": "Build a trustworthy used-car marketplace for India that scales across web and mobile while keeping listings searchable, dealer verification clear, and the experience fast for everyday buyers and sellers.",
+    "solution": "Shipped a FastAPI backend with PostgreSQL and Redis, a Next.js web front end, and native Android (Kotlin) and iOS (Swift) apps — with Docker-based infrastructure and documentation for production deployment.",
+    "outcome": "A production platform live at auto.linkpc.net where users can browse, compare, and list used cars across Indian cities."
+  },
+  "architecture": {
+    "summary": "Multi-surface marketplace architecture with a shared API core and dedicated web and mobile clients.",
+    "layers": [
+      {
+        "name": "Web",
+        "tech": "Next.js 15, TypeScript, Tailwind CSS",
+        "role": "Browse listings, search, sell flows, SEO-friendly pages"
+      },
+      {
+        "name": "API",
+        "tech": "FastAPI, Python 3.12",
+        "role": "Listings, auth, dealer verification, business rules"
+      },
+      {
+        "name": "Data",
+        "tech": "PostgreSQL, Redis",
+        "role": "Persistent storage and caching for search performance"
+      },
+      {
+        "name": "Mobile",
+        "tech": "Kotlin, Jetpack Compose, Swift, SwiftUI",
+        "role": "Native Android and iOS apps for on-the-go browsing"
+      }
+    ]
+  }
+}

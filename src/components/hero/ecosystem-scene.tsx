@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { Billboard, Html, Sparkles } from "@react-three/drei";
 import {
   Brain,
+  Car,
   Cloud,
   GitBranch,
   Layers,
@@ -18,27 +19,29 @@ import { heroContent } from "@/constants/content";
 
 const ORBITAL_RINGS = [
   {
-    radius: 1.75,
-    tiltX: 1.15,
-    tiltY: 0.2,
+    radius: 1.28,
+    tiltX: 1.08,
+    tiltY: 0.12,
     speed: 0.28,
     color: "#4F8CFF",
   },
   {
-    radius: 2.35,
-    tiltX: 0.95,
-    tiltY: -0.45,
+    radius: 1.72,
+    tiltX: 0.94,
+    tiltY: -0.32,
     speed: -0.2,
     color: "#6D5DF6",
   },
   {
-    radius: 2.95,
-    tiltX: 1.35,
-    tiltY: 0.55,
+    radius: 2.08,
+    tiltX: 1.22,
+    tiltY: 0.42,
     speed: 0.14,
     color: "#4F8CFF",
   },
 ] as const;
+
+const SCENE_SCALE = 0.88;
 
 const iconMap = {
   trending: TrendingUp,
@@ -48,6 +51,7 @@ const iconMap = {
   git: GitBranch,
   layers: Layers,
   cloud: Cloud,
+  car: Car,
 } as const;
 
 function getOrbitPosition(
@@ -59,7 +63,7 @@ function getOrbitPosition(
   const theta = baseAngle + time * ring.speed;
   const local = new THREE.Vector3(
     ring.radius * Math.cos(theta),
-    Math.sin(time * 1.35 + floatOffset) * 0.14,
+    Math.sin(time * 1.35 + floatOffset) * 0.05,
     ring.radius * Math.sin(theta),
   );
   const rotation = new THREE.Euler(ring.tiltX, ring.tiltY, 0, "YXZ");
@@ -72,7 +76,7 @@ function Atmosphere() {
     <>
       <Sparkles
         count={90}
-        scale={[8, 6, 8]}
+        scale={[6, 5, 6]}
         size={2.2}
         speed={0.22}
         opacity={0.45}
@@ -80,7 +84,7 @@ function Atmosphere() {
       />
       <Sparkles
         count={40}
-        scale={[6, 4, 6]}
+        scale={[4.5, 3.5, 4.5]}
         size={3.5}
         speed={0.12}
         opacity={0.2}
@@ -204,20 +208,6 @@ function CoreOrb() {
           depthWrite={false}
         />
       </mesh>
-
-      <Billboard follow>
-        <Html
-          center
-          distanceFactor={9}
-          className="pointer-events-none select-none"
-        >
-          <div className="flex size-12 items-center justify-center rounded-full border border-white/15 bg-[#020617]/80 shadow-[0_0_30px_rgba(79,140,255,0.45)] backdrop-blur-md">
-            <span className="bg-gradient-to-br from-[#4F8CFF] to-[#6D5DF6] bg-clip-text text-sm font-bold text-transparent">
-              SA
-            </span>
-          </div>
-        </Html>
-      </Billboard>
     </group>
   );
 }
@@ -303,19 +293,19 @@ function EcosystemNode({
       <Billboard follow>
         <Html
           center
-          distanceFactor={5.2}
+          distanceFactor={8.4}
           className="pointer-events-none select-none"
           zIndexRange={[40, 0]}
         >
-          <div className="flex min-w-[148px] items-center gap-2.5 rounded-xl border border-white/14 bg-[#020617]/92 px-3.5 py-2.5 shadow-[0_0_28px_-4px_rgba(79,140,255,0.45),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl">
-            <div className="from-primary/35 to-purple/25 flex size-8 shrink-0 items-center justify-center rounded-lg border border-white/12 bg-gradient-to-br shadow-[0_0_16px_rgba(79,140,255,0.25)]">
-              <Icon className="text-primary size-4" strokeWidth={2} />
+          <div className="flex max-w-[126px] min-w-[118px] items-center gap-2 rounded-lg border border-white/14 bg-[#020617]/92 px-2.5 py-1.5 shadow-[0_0_28px_-4px_rgba(79,140,255,0.45),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl">
+            <div className="from-primary/35 to-purple/25 flex size-7 shrink-0 items-center justify-center rounded-md border border-white/12 bg-gradient-to-br shadow-[0_0_16px_rgba(79,140,255,0.25)]">
+              <Icon className="text-primary size-3.5" strokeWidth={2} />
             </div>
-            <div className="text-left">
-              <p className="text-[11px] leading-tight font-semibold text-white/92">
+            <div className="min-w-0 text-left">
+              <p className="truncate text-[10px] leading-tight font-semibold text-white/92">
                 {node.label}
               </p>
-              <p className="text-[9px] leading-tight text-white/48">
+              <p className="truncate text-[8px] leading-tight text-white/48">
                 {node.subtitle}
               </p>
             </div>
@@ -332,12 +322,12 @@ export function EcosystemScene() {
   useFrame((state) => {
     if (!rigRef.current) return;
     const t = state.clock.elapsedTime;
-    rigRef.current.rotation.y = Math.sin(t * 0.08) * 0.18;
-    rigRef.current.rotation.x = Math.sin(t * 0.11) * 0.08 + 0.05;
+    rigRef.current.rotation.y = Math.sin(t * 0.05) * 0.028;
+    rigRef.current.rotation.x = Math.sin(t * 0.07) * 0.014 + 0.018;
   });
 
   return (
-    <group ref={rigRef}>
+    <group ref={rigRef} scale={SCENE_SCALE}>
       <ambientLight intensity={0.28} />
       <pointLight position={[5, 4, 5]} color="#4F8CFF" intensity={4} />
       <pointLight position={[-4, -2, 4]} color="#6D5DF6" intensity={2} />

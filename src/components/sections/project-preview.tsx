@@ -1,12 +1,117 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface ProjectPreviewProps {
+  id: string;
   name: string;
   theme: "dark" | "light";
   status: string;
+  href?: string;
+  logo?: string;
+  preview?: string;
 }
 
-export function ProjectPreview({ name, theme, status }: ProjectPreviewProps) {
+function getHostname(href?: string) {
+  if (!href) return null;
+
+  try {
+    return new URL(href).hostname.replace(/^www\./, "");
+  } catch {
+    return null;
+  }
+}
+
+export function ProjectPreview({
+  id,
+  name,
+  theme,
+  status,
+  href,
+  logo,
+}: ProjectPreviewProps) {
+  const isLight = theme === "light";
+  const hostname = getHostname(href) ?? name.toLowerCase();
+
+  if (!logo) {
+    return <LegacyProjectPreview name={name} theme={theme} status={status} />;
+  }
+
+  return (
+    <div
+      className={cn(
+        "relative flex aspect-[16/10] flex-col overflow-hidden rounded-xl border",
+        isLight
+          ? "border-white/10 bg-[#f8fafc]"
+          : "border-white/[0.06] bg-[#0c1222]",
+      )}
+    >
+      <div
+        className={cn(
+          "flex items-center gap-2 border-b px-3 py-2",
+          isLight
+            ? "border-black/5 bg-white/80"
+            : "border-white/5 bg-[#0a1020]/90",
+        )}
+      >
+        <div className="flex items-center gap-1.5">
+          <span className="size-2 rounded-full bg-red-400/80" />
+          <span className="size-2 rounded-full bg-yellow-400/80" />
+          <span className="size-2 rounded-full bg-green-400/80" />
+        </div>
+        <div
+          className={cn(
+            "flex min-w-0 flex-1 items-center rounded-md border px-2 py-1",
+            isLight
+              ? "border-slate-200 bg-slate-50"
+              : "border-white/8 bg-white/[0.04]",
+          )}
+        >
+          <span
+            className={cn(
+              "truncate font-mono text-[9px]",
+              isLight ? "text-slate-500" : "text-white/45",
+            )}
+          >
+            {hostname}
+          </span>
+        </div>
+      </div>
+
+      <div
+        className={cn(
+          "relative flex min-h-0 flex-1 items-center justify-center p-5 sm:p-6",
+          isLight ? "bg-[#f8fafc]" : "bg-[#0c1222]",
+        )}
+      >
+        <div
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            background: isLight
+              ? "radial-gradient(ellipse at 50% 45%, rgba(79,140,255,0.12), transparent 68%)"
+              : "radial-gradient(ellipse at 50% 45%, rgba(79,140,255,0.18), transparent 68%)",
+          }}
+        />
+        <div className="relative h-full w-full max-w-[88%]">
+          <Image
+            src={logo}
+            alt={`${name} logo`}
+            fill
+            className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
+            priority={id === "financio"}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LegacyProjectPreview({
+  name,
+  theme,
+  status,
+}: Pick<ProjectPreviewProps, "name" | "theme" | "status">) {
   const isLight = theme === "light";
   const isPlaceholder = status === "In Progress";
 
@@ -72,7 +177,7 @@ export function ProjectPreview({ name, theme, status }: ProjectPreviewProps) {
                 <polyline
                   points="0,40 40,30 80,35 120,15 160,25 200,10"
                   fill="none"
-                  stroke={isLight ? "#4F8CFF" : "#4F8CFF"}
+                  stroke="#4F8CFF"
                   strokeWidth="2"
                   opacity="0.7"
                 />

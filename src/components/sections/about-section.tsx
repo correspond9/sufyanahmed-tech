@@ -13,6 +13,7 @@ import { aboutContent } from "@/constants/content";
 import { Container } from "@/components/ui/container";
 import { SectionTitle } from "@/components/ui/glass";
 import { Reveal } from "@/components/ui/reveal";
+import { cn } from "@/lib/utils";
 
 const iconMap = {
   dumbbell: Dumbbell,
@@ -20,6 +21,44 @@ const iconMap = {
   code: Code2,
   brain: Brain,
   rocket: Rocket,
+} as const;
+
+const timelineIconStyles = {
+  dumbbell: {
+    ring: "from-emerald-500/40 via-teal-500/25 to-emerald-600/20",
+    glow: "shadow-[0_0_24px_-4px_rgba(52,211,153,0.5)]",
+    icon: "text-emerald-300",
+    iconShadow:
+      "drop-shadow-[0_1px_0_rgba(255,255,255,0.35)] drop-shadow-[0_3px_6px_rgba(6,78,59,0.9)]",
+  },
+  chart: {
+    ring: "from-amber-500/40 via-yellow-500/25 to-orange-600/20",
+    glow: "shadow-[0_0_24px_-4px_rgba(251,191,36,0.5)]",
+    icon: "text-amber-300",
+    iconShadow:
+      "drop-shadow-[0_1px_0_rgba(255,255,255,0.35)] drop-shadow-[0_3px_6px_rgba(120,53,15,0.9)]",
+  },
+  code: {
+    ring: "from-cyan-500/40 via-sky-500/25 to-blue-600/20",
+    glow: "shadow-[0_0_24px_-4px_rgba(34,211,238,0.5)]",
+    icon: "text-cyan-300",
+    iconShadow:
+      "drop-shadow-[0_1px_0_rgba(255,255,255,0.35)] drop-shadow-[0_3px_6px_rgba(14,116,144,0.9)]",
+  },
+  brain: {
+    ring: "from-fuchsia-500/40 via-violet-500/25 to-purple-600/20",
+    glow: "shadow-[0_0_24px_-4px_rgba(232,121,249,0.5)]",
+    icon: "text-fuchsia-300",
+    iconShadow:
+      "drop-shadow-[0_1px_0_rgba(255,255,255,0.35)] drop-shadow-[0_3px_6px_rgba(88,28,135,0.9)]",
+  },
+  rocket: {
+    ring: "from-orange-500/40 via-rose-500/25 to-red-600/20",
+    glow: "shadow-[0_0_24px_-4px_rgba(251,146,60,0.5)]",
+    icon: "text-orange-300",
+    iconShadow:
+      "drop-shadow-[0_1px_0_rgba(255,255,255,0.35)] drop-shadow-[0_3px_6px_rgba(124,45,18,0.9)]",
+  },
 } as const;
 
 export function AboutSection() {
@@ -50,6 +89,7 @@ export function AboutSection() {
             <div className="flex min-w-[640px] gap-4 lg:min-w-0 lg:justify-between">
               {aboutContent.timeline.map((item, index) => {
                 const Icon = iconMap[item.icon];
+                const styles = timelineIconStyles[item.icon];
                 return (
                   <Reveal
                     key={item.step}
@@ -58,8 +98,24 @@ export function AboutSection() {
                   >
                     <div className="flex flex-col items-center text-center">
                       <div className="relative mb-4">
-                        <div className="from-primary to-purple flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#4F8CFF]/20 to-[#6D5DF6]/20 shadow-[0_0_24px_-4px_rgba(79,140,255,0.3)]">
-                          <Icon className="text-primary size-5" />
+                        <div
+                          className={cn(
+                            "flex size-14 items-center justify-center rounded-2xl border border-white/15 bg-gradient-to-br",
+                            styles.ring,
+                            styles.glow,
+                          )}
+                        >
+                          <div className="flex size-10 items-center justify-center rounded-xl border border-white/20 bg-[#070b16]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_4px_10px_rgba(0,0,0,0.5)]">
+                            <Icon
+                              className={cn(
+                                "size-5",
+                                styles.icon,
+                                styles.iconShadow,
+                              )}
+                              strokeWidth={2.25}
+                              aria-hidden
+                            />
+                          </div>
                         </div>
                         <span className="text-primary absolute -top-2 -right-2 rounded-md bg-[#0a0f1f] px-1.5 py-0.5 text-[9px] font-bold">
                           {item.step}

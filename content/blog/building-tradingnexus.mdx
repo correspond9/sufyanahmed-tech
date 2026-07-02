@@ -1,0 +1,38 @@
+---
+title: "Building TradingNexus: From Architecture to Production"
+description: "How TradingNexus was designed and shipped as a production-ready trading platform with Next.js, FastAPI, and cloud-native deployment."
+date: "2026-06-15"
+tags: ["engineering", "fintech", "product"]
+---
+
+TradingNexus started with a clear constraint: **build something that feels premium and survives real production traffic** — not a demo that looks good in screenshots.
+
+## The product goal
+
+Trading platforms fail when they optimize for visuals alone. Traders need:
+
+- Fast access to market context
+- A UI that stays calm under information density
+- Infrastructure that does not break when usage grows
+
+That shaped every architectural decision.
+
+## Stack choices
+
+| Layer | Technology | Why |
+|-------|------------|-----|
+| Frontend | Next.js + TypeScript | Performance, SEO, and a component model that scales |
+| API | FastAPI | Typed Python APIs with excellent async performance |
+| Database | PostgreSQL | Reliable relational data for financial workflows |
+| Cache | Redis | Low-latency reads for hot paths |
+| Deploy | Docker + Coolify | Repeatable builds and controlled production releases |
+
+## What I learned
+
+The hardest part was not picking tools — it was **keeping quality consistent** while shipping quickly. AI-assisted development helped accelerate implementation, but architecture, review discipline, and production standards still had to be human-led.
+
+TradingNexus is live at [tradingnexus.pro](https://tradingnexus.pro/).
+
+## Next steps
+
+The platform continues to evolve with tighter observability, safer deploy workflows, and UX refinements driven by real usage — not assumptions.

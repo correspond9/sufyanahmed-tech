@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteContent } from "@/constants/content";
 import { cn } from "@/lib/utils";
 
 interface LogoProps {
@@ -28,7 +29,7 @@ export function Logo({ className }: LogoProps) {
         </span>
       </div>
       <span className="font-display text-[15px] font-semibold tracking-tight text-white">
-        SufyanAhmed.Tech
+        {siteContent.brand.name}
       </span>
     </Link>
   );
