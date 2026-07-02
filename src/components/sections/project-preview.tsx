@@ -28,13 +28,11 @@ export function ProjectPreview({
   status,
   href,
   logo,
-  preview,
 }: ProjectPreviewProps) {
   const isLight = theme === "light";
   const hostname = getHostname(href) ?? name.toLowerCase();
-  const hasMedia = Boolean(logo && preview);
 
-  if (!hasMedia) {
+  if (!logo) {
     return <LegacyProjectPreview name={name} theme={theme} status={status} />;
   }
 
@@ -62,21 +60,12 @@ export function ProjectPreview({
         </div>
         <div
           className={cn(
-            "flex min-w-0 flex-1 items-center gap-2 rounded-md border px-2 py-1",
+            "flex min-w-0 flex-1 items-center rounded-md border px-2 py-1",
             isLight
               ? "border-slate-200 bg-slate-50"
               : "border-white/8 bg-white/[0.04]",
           )}
         >
-          <div className="relative size-4 shrink-0 overflow-hidden rounded-sm">
-            <Image
-              src={logo!}
-              alt=""
-              fill
-              className="object-contain"
-              sizes="16px"
-            />
-          </div>
           <span
             className={cn(
               "truncate font-mono text-[9px]",
@@ -88,21 +77,31 @@ export function ProjectPreview({
         </div>
       </div>
 
-      <div className="relative min-h-0 flex-1">
-        <Image
-          src={preview!}
-          alt={`${name} website preview`}
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 480px"
-          priority={id === "financio"}
-        />
+      <div
+        className={cn(
+          "relative flex min-h-0 flex-1 items-center justify-center p-5 sm:p-6",
+          isLight ? "bg-[#f8fafc]" : "bg-[#0c1222]",
+        )}
+      >
         <div
-          className={cn(
-            "pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t to-transparent",
-            isLight ? "from-white/80" : "from-[#0c1222]/85",
-          )}
+          className="pointer-events-none absolute inset-0"
+          aria-hidden
+          style={{
+            background: isLight
+              ? "radial-gradient(ellipse at 50% 45%, rgba(79,140,255,0.12), transparent 68%)"
+              : "radial-gradient(ellipse at 50% 45%, rgba(79,140,255,0.18), transparent 68%)",
+          }}
         />
+        <div className="relative h-full w-full max-w-[88%]">
+          <Image
+            src={logo}
+            alt={`${name} logo`}
+            fill
+            className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
+            priority={id === "financio"}
+          />
+        </div>
       </div>
     </div>
   );
