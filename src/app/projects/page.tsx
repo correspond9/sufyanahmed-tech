@@ -14,7 +14,7 @@ import { cn, isExternalLink } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Explore products built by Sufyan Ahmed Ansari — TradingNexus, Financio, XchangeByte, and more.",
+    "Explore products built by Sufyan Ahmed Ansari — TradingNexus, Financio, Car-Market, XchangeByte, and more.",
   alternates: { canonical: `${siteConfig.url}/projects` },
   openGraph: {
     title: `Projects | ${siteConfig.shortName}`,

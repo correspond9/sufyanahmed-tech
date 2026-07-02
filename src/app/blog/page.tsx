@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Engineering notes, product thinking, and lessons from building TradingNexus, Financio, and more.",
+    "Engineering notes, product thinking, and lessons from building TradingNexus, Financio, Car-Market, and more.",
   alternates: { canonical: `${siteConfig.url}/blog` },
 };
 
