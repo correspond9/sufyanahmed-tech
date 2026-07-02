@@ -8,6 +8,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { siteContent } from "@/constants/content";
 import { Logo } from "@/components/site/logo";
 import { Container } from "@/components/ui/container";
+import { routes } from "@/lib/navigation";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +22,10 @@ function NavItem({
   onClick?: () => void;
 }) {
   const pathname = usePathname();
-  const isActive = (href === "#home" && pathname === "/") || label === "Home";
+  const isHashLink = href.includes("#");
+  const isPageLink = !isHashLink && href === pathname;
+  const isHomeActive = href === routes.home && pathname === routes.home;
+  const isActive = isPageLink || isHomeActive;
 
   return (
     <Link
@@ -71,7 +75,7 @@ export function SiteHeader() {
               }
             >
               <Link
-                href="#contact"
+                href={routes.contact}
                 className={cn(
                   "inline-flex items-center gap-2 rounded-full px-5 py-2.5",
                   "text-[13px] font-medium text-white",
@@ -120,7 +124,7 @@ export function SiteHeader() {
                 />
               ))}
               <Link
-                href="#contact"
+                href={routes.contact}
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-5 py-2.5 text-[13px] font-medium text-white sm:hidden"
               >

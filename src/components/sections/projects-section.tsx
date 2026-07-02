@@ -80,9 +80,7 @@ export function ProjectsSection() {
                     href={project.href}
                     className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
                   >
-                    {project.status === "In Progress"
-                      ? "Coming Soon"
-                      : "Visit Live Platform"}
+                    {project.linkLabel}
                     <ExternalLink className="size-3" />
                   </Link>
                 </div>
