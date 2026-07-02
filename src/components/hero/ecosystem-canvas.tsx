@@ -12,7 +12,7 @@ export function EcosystemCanvas() {
 
       <Canvas
         className="relative z-[1] h-full w-full"
-        camera={{ position: [0, 0.15, 9.4], fov: 32 }}
+        camera={{ position: [0, 0.12, 8.8], fov: 34 }}
         dpr={[1, 2]}
         gl={{
           antialias: true,

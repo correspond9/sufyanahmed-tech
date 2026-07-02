@@ -19,29 +19,29 @@ import { heroContent } from "@/constants/content";
 
 const ORBITAL_RINGS = [
   {
-    radius: 1.05,
-    tiltX: 1.1,
-    tiltY: 0.15,
+    radius: 1.28,
+    tiltX: 1.08,
+    tiltY: 0.12,
     speed: 0.28,
     color: "#4F8CFF",
   },
   {
-    radius: 1.38,
-    tiltX: 0.92,
-    tiltY: -0.35,
+    radius: 1.72,
+    tiltX: 0.94,
+    tiltY: -0.32,
     speed: -0.2,
     color: "#6D5DF6",
   },
   {
-    radius: 1.68,
-    tiltX: 1.25,
-    tiltY: 0.45,
+    radius: 2.08,
+    tiltX: 1.22,
+    tiltY: 0.42,
     speed: 0.14,
     color: "#4F8CFF",
   },
 ] as const;
 
-const SCENE_SCALE = 0.74;
+const SCENE_SCALE = 0.88;
 
 const iconMap = {
   trending: TrendingUp,
@@ -293,11 +293,11 @@ function EcosystemNode({
       <Billboard follow>
         <Html
           center
-          distanceFactor={9.2}
+          distanceFactor={8.4}
           className="pointer-events-none select-none"
           zIndexRange={[40, 0]}
         >
-          <div className="flex max-w-[118px] min-w-[112px] items-center gap-2 rounded-lg border border-white/14 bg-[#020617]/92 px-2.5 py-1.5 shadow-[0_0_28px_-4px_rgba(79,140,255,0.45),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl">
+          <div className="flex max-w-[126px] min-w-[118px] items-center gap-2 rounded-lg border border-white/14 bg-[#020617]/92 px-2.5 py-1.5 shadow-[0_0_28px_-4px_rgba(79,140,255,0.45),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl">
             <div className="from-primary/35 to-purple/25 flex size-7 shrink-0 items-center justify-center rounded-md border border-white/12 bg-gradient-to-br shadow-[0_0_16px_rgba(79,140,255,0.25)]">
               <Icon className="text-primary size-3.5" strokeWidth={2} />
             </div>
@@ -322,8 +322,8 @@ export function EcosystemScene() {
   useFrame((state) => {
     if (!rigRef.current) return;
     const t = state.clock.elapsedTime;
-    rigRef.current.rotation.y = Math.sin(t * 0.06) * 0.035;
-    rigRef.current.rotation.x = Math.sin(t * 0.08) * 0.018 + 0.02;
+    rigRef.current.rotation.y = Math.sin(t * 0.05) * 0.028;
+    rigRef.current.rotation.x = Math.sin(t * 0.07) * 0.014 + 0.018;
   });
 
   return (
