@@ -39,7 +39,7 @@ export function ProjectsSection() {
           </Reveal>
         </div>
 
-        <StaggerReveal className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <StaggerReveal className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-2">
           {projects.map((project) => (
             <StaggerItem key={project.id}>
               <GlassPanel
