@@ -4,7 +4,7 @@ import { projectsContent } from "@/constants/content";
 import { Container } from "@/components/ui/container";
 import { GlassPanel, SectionTitle } from "@/components/ui/glass";
 import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
-import { cn } from "@/lib/utils";
+import { cn, isExternalLink } from "@/lib/utils";
 import { ProjectPreview } from "@/components/sections/project-preview";
 
 const statusStyles = {
@@ -76,13 +76,25 @@ export function ProjectsSection() {
                       </span>
                     ))}
                   </div>
-                  <Link
-                    href={project.href}
-                    className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
-                  >
-                    {project.linkLabel}
-                    <ExternalLink className="size-3" />
-                  </Link>
+                  {isExternalLink(project.href) ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
+                    >
+                      {project.linkLabel}
+                      <ExternalLink className="size-3" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={project.href}
+                      className="text-primary group-hover:text-primary/80 inline-flex items-center gap-1.5 text-[12px] font-medium transition-colors"
+                    >
+                      {project.linkLabel}
+                      <ExternalLink className="size-3" />
+                    </Link>
+                  )}
                 </div>
               </GlassPanel>
             </StaggerItem>

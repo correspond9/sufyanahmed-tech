@@ -9,7 +9,7 @@ import { Reveal, StaggerReveal, StaggerItem } from "@/components/ui/reveal";
 import { siteConfig } from "@/config/site";
 import { projectsContent } from "@/constants/content";
 import { routes } from "@/lib/navigation";
-import { cn } from "@/lib/utils";
+import { cn, isExternalLink } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -92,13 +92,25 @@ export default function ProjectsPage() {
                           </span>
                         ))}
                       </div>
-                      <Link
-                        href={project.href}
-                        className="text-primary hover:text-primary/80 mt-auto inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
-                      >
-                        {project.linkLabel}
-                        <ExternalLink className="size-3.5" />
-                      </Link>
+                      {isExternalLink(project.href) ? (
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary hover:text-primary/80 mt-auto inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
+                        >
+                          {project.linkLabel}
+                          <ExternalLink className="size-3.5" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={project.href}
+                          className="text-primary hover:text-primary/80 mt-auto inline-flex items-center gap-1.5 text-[13px] font-medium transition-colors"
+                        >
+                          {project.linkLabel}
+                          <ExternalLink className="size-3.5" />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </GlassPanel>
