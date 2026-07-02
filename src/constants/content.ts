@@ -358,7 +358,7 @@ export const contactFormContent = {
   error:
     "Something went wrong. Please try again or email hello@sufyanahmed.tech directly.",
   notConfigured:
-    "The contact form is not fully configured yet. Please email hello@sufyanahmed.tech directly.",
+    "The contact form email is not set up on the server yet. Please email hello@sufyanahmed.tech directly.",
 } as const;
 
 export const footerContent = {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { siteConfig } from "@/config/site";
+import { sendContactEmail } from "@/lib/email";
 
 interface ContactPayload {
   name?: string;
@@ -55,55 +55,26 @@ export async function POST(request: Request) {
     );
   }
 
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY;
-
-  if (!accessKey) {
-    return NextResponse.json(
-      {
-        ok: false,
-        code: "NOT_CONFIGURED",
-        error: "Contact form delivery is not configured on the server.",
-      },
-      { status: 503 },
-    );
-  }
-
   try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: accessKey,
-        name,
-        email,
-        subject: `[SufyanAhmed.Tech] ${subject}`,
-        message,
-        from_name: siteConfig.shortName,
-        replyto: email,
-      }),
-    });
-
-    const result = (await response.json()) as {
-      success?: boolean;
-      message?: string;
-    };
-
-    if (!response.ok || !result.success) {
+    await sendContactEmail({ name, email, subject, message });
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    if (error instanceof Error && error.message === "SMTP_NOT_CONFIGURED") {
       return NextResponse.json(
-        { ok: false, error: result.message ?? "Failed to send message." },
-        { status: 502 },
+        {
+          ok: false,
+          code: "NOT_CONFIGURED",
+          error: "Contact form email is not configured on the server.",
+        },
+        { status: 503 },
       );
     }
 
-    return NextResponse.json({ ok: true });
-  } catch {
     return NextResponse.json(
       {
         ok: false,
-        error: "Unable to reach the email service. Please try again later.",
+        error:
+          "Unable to send your message right now. Please email hello@sufyanahmed.tech directly.",
       },
       { status: 502 },
     );
