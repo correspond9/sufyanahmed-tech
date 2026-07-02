@@ -5,14 +5,14 @@ import { EcosystemScene } from "@/components/hero/ecosystem-scene";
 
 export function EcosystemCanvas() {
   return (
-    <div className="hero-orbit-stage absolute inset-0">
+    <div className="hero-orbit-stage absolute inset-0 overflow-hidden">
       <div className="hero-orbit-halo pointer-events-none absolute top-1/2 left-1/2 size-[min(100%,520px)] -translate-x-1/2 -translate-y-1/2" />
       <div className="hero-orbit-leak pointer-events-none absolute top-[8%] right-[4%] size-48" />
       <div className="hero-orbit-leak-secondary pointer-events-none absolute bottom-[18%] left-[8%] size-36" />
 
       <Canvas
         className="relative z-[1] h-full w-full"
-        camera={{ position: [0, 0.35, 6.2], fov: 42 }}
+        camera={{ position: [0, 0.2, 7.5], fov: 38 }}
         dpr={[1, 2]}
         gl={{
           antialias: true,
