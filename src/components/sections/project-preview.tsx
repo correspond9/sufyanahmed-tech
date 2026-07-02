@@ -39,7 +39,8 @@ export function ProjectPreview({
   return (
     <div
       className={cn(
-        "relative flex aspect-[16/10] flex-col overflow-hidden rounded-xl border",
+        "relative flex aspect-[16/10] flex-col overflow-hidden rounded-xl border transition-all duration-500",
+        "group-hover:border-primary/30 group-hover:shadow-[0_0_40px_-8px_rgba(79,140,255,0.35)]",
         isLight
           ? "border-white/10 bg-[#f8fafc]"
           : "border-white/[0.06] bg-[#0c1222]",
@@ -92,12 +93,12 @@ export function ProjectPreview({
               : "radial-gradient(ellipse at 50% 45%, rgba(79,140,255,0.18), transparent 68%)",
           }}
         />
-        <div className="relative h-full w-full max-w-[88%]">
+        <div className="relative h-full w-full max-w-[88%] transition-transform duration-500 ease-out group-hover:scale-110">
           <Image
             src={logo}
             alt={`${name} logo`}
             fill
-            className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+            className="object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-transform duration-500 ease-out"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 320px"
             priority={id === "financio"}
           />

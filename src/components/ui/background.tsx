@@ -7,7 +7,8 @@ interface BackgroundProps extends HTMLAttributes<HTMLDivElement> {
 
 const variantClasses = {
   default: "bg-background",
-  gradient: "bg-gradient-to-b from-background via-background to-surface",
+  gradient:
+    "bg-gradient-to-b from-background/92 via-[#020617]/88 to-surface/92",
   grid: "bg-background bg-grid",
   glow: "bg-background bg-glow",
 } as const;

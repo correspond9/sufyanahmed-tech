@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -32,7 +32,7 @@ function NavItem({
       href={href}
       onClick={onClick}
       className={cn(
-        "group relative px-3 py-2 text-[13px] font-medium transition-colors duration-300",
+        "nav-link-hover group relative px-3 py-2 text-[13px] font-medium transition-colors duration-300",
         isActive ? "text-white" : "text-white/55 hover:text-white/90",
       )}
     >
@@ -46,12 +46,27 @@ function NavItem({
 
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const mounted = useMounted();
   const prefersReducedMotion = useReducedMotion();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <header className="fixed top-0 right-0 left-0 z-50">
-      <div className="border-b border-white/[0.06] bg-[#020617]/60 backdrop-blur-2xl backdrop-saturate-150">
+      <div
+        className={cn(
+          "border-b backdrop-blur-2xl backdrop-saturate-150 transition-[background-color,border-color,box-shadow] duration-300",
+          scrolled
+            ? "border-white/[0.1] bg-[#020617]/85 shadow-[0_8px_32px_-12px_rgba(79,140,255,0.2)]"
+            : "border-white/[0.06] bg-[#020617]/60",
+        )}
+      >
         <Container className="flex h-[4.5rem] items-center justify-between gap-4">
           <Logo />
 

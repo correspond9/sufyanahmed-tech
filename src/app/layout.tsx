@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ResponsiveLayout } from "@/components/layout/responsive-layout";
 import { JsonLd } from "@/components/seo/json-ld";
+import { AmbientBackground } from "@/components/ui/ambient-background";
 import { Background } from "@/components/ui/background";
 import { metadata, viewport } from "@/config/metadata";
 import { ThemeProvider } from "@/providers/theme-provider";
@@ -21,7 +22,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <ThemeProvider>
           <SmoothScrollProvider>
             <Background variant="gradient">
-              <ResponsiveLayout>{children}</ResponsiveLayout>
+              <AmbientBackground />
+              <div className="relative z-10">
+                <ResponsiveLayout>{children}</ResponsiveLayout>
+              </div>
             </Background>
           </SmoothScrollProvider>
         </ThemeProvider>

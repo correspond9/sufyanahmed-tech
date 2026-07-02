@@ -1,10 +1,17 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import type { HTMLAttributes, ReactNode } from "react";
 
-interface GlassPanelProps extends HTMLAttributes<HTMLDivElement> {
+interface GlassPanelProps extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  "onAnimationStart" | "onDrag" | "onDragEnd" | "onDragStart"
+> {
   children: ReactNode;
   variant?: "default" | "strong" | "subtle";
   glow?: boolean;
+  interactive?: boolean;
 }
 
 const variants = {
@@ -21,21 +28,37 @@ export function GlassPanel({
   className,
   variant = "default",
   glow = false,
+  interactive = false,
   ...props
 }: GlassPanelProps) {
+  const prefersReducedMotion = useReducedMotion();
+
+  const panelClass = cn(
+    "backdrop-blur-xl rounded-2xl border transition-[border-color,box-shadow,transform] duration-300",
+    variants[variant],
+    glow && "shadow-glow-blue",
+    interactive &&
+      "glass-panel-interactive hover:border-primary/40 hover:shadow-[0_0_60px_-8px_rgba(79,140,255,0.5)]",
+    className,
+  );
+
+  if (!interactive || prefersReducedMotion) {
+    return (
+      <div className={panelClass} {...props}>
+        {children}
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={cn(
-        "backdrop-blur-xl",
-        "rounded-2xl border",
-        variants[variant],
-        glow && "shadow-glow-blue",
-        className,
-      )}
+    <motion.div
+      className={panelClass}
+      whileHover={{ y: -12, scale: 1.025 }}
+      transition={{ type: "spring", stiffness: 320, damping: 18 }}
       {...props}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 
@@ -43,17 +66,20 @@ interface GradientTextProps {
   children: ReactNode;
   className?: string;
   as?: "span" | "p" | "h1" | "h2" | "h3";
+  animated?: boolean;
 }
 
 export function GradientText({
   children,
   className,
   as: Tag = "span",
+  animated = true,
 }: GradientTextProps) {
   return (
     <Tag
       className={cn(
         "bg-gradient-to-r from-[#4F8CFF] via-[#6D9FFF] to-[#6D5DF6] bg-clip-text text-transparent",
+        animated && "gradient-text-shine",
         className,
       )}
     >
@@ -71,7 +97,7 @@ export function SectionLabel({ children, className }: SectionLabelProps) {
   return (
     <p
       className={cn(
-        "text-[11px] font-semibold tracking-[0.14em] text-[#4F8CFF]/90 uppercase",
+        "gradient-text-shine text-[11px] font-semibold tracking-[0.14em] uppercase",
         className,
       )}
     >

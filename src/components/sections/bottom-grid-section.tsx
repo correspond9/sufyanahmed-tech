@@ -74,6 +74,7 @@ export function BottomGridSection() {
             <GlassPanel
               id={processContent.id}
               className="flex h-full flex-col p-5 lg:p-6"
+              interactive
             >
               <SectionTitle as="h3" className="mb-5 text-xl lg:text-[1.35rem]">
                 {processContent.title}
@@ -99,7 +100,11 @@ export function BottomGridSection() {
 
           {/* Tech Stack */}
           <Reveal delay={0.08}>
-            <GlassPanel id={techStackContent.id} className="h-full p-5 lg:p-6">
+            <GlassPanel
+              id={techStackContent.id}
+              className="h-full p-5 lg:p-6"
+              interactive
+            >
               <SectionTitle as="h3" className="mb-5 text-xl lg:text-[1.35rem]">
                 {techStackContent.title}
               </SectionTitle>
@@ -107,9 +112,9 @@ export function BottomGridSection() {
                 {techStackContent.items.map((tech) => (
                   <div
                     key={tech}
-                    className="group hover:border-primary/20 hover:bg-primary/[0.06] flex flex-col items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.03] p-2.5 transition-colors"
+                    className="group hover:border-primary/25 hover:bg-primary/[0.08] flex flex-col items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.03] p-2.5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_-8px_rgba(79,140,255,0.25)]"
                   >
-                    <span className="from-primary/30 to-purple/20 flex size-9 items-center justify-center rounded-lg bg-gradient-to-br text-[11px] font-bold text-white/80">
+                    <span className="from-primary/30 to-purple/20 flex size-9 items-center justify-center rounded-lg bg-gradient-to-br text-[11px] font-bold text-white/80 transition-transform duration-300 group-hover:scale-110">
                       {techIcons[tech] ?? tech.charAt(0)}
                     </span>
                     <span className="text-center text-[9px] font-medium text-white/45 group-hover:text-white/65">
@@ -126,6 +131,7 @@ export function BottomGridSection() {
             <GlassPanel
               id={certificationsContent.id}
               className="flex h-full flex-col p-5 lg:p-6"
+              interactive
             >
               <SectionTitle as="h3" className="mb-5 text-xl lg:text-[1.35rem]">
                 {certificationsContent.title}
@@ -134,7 +140,7 @@ export function BottomGridSection() {
                 {certificationsContent.items.map((cert) => (
                   <div
                     key={cert.name}
-                    className="flex flex-col items-center rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 text-center"
+                    className="hover:border-primary/20 hover:bg-primary/[0.05] flex flex-col items-center rounded-xl border border-white/[0.06] bg-white/[0.03] p-3 text-center transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="from-primary/25 to-purple/15 mb-2 flex size-10 items-center justify-center rounded-lg bg-gradient-to-br text-xs font-bold text-white/80">
                       {cert.name.slice(0, 2).toUpperCase()}
@@ -161,6 +167,7 @@ export function BottomGridSection() {
             <GlassPanel
               id={contactContent.id}
               className="flex h-full flex-col p-5 lg:p-6"
+              interactive
             >
               <SectionTitle
                 as="h3"
@@ -175,11 +182,11 @@ export function BottomGridSection() {
               <Link
                 href={contactContent.cta.href}
                 className={cn(
-                  "mb-4 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5",
+                  "cta-glow-primary mb-4 inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5",
                   "text-[12px] font-semibold text-white",
                   "from-primary bg-gradient-to-r to-[#6D5DF6]",
                   "shadow-[0_0_24px_-4px_rgba(79,140,255,0.45)]",
-                  "transition-all hover:brightness-110",
+                  "transition-all duration-300 hover:scale-[1.03] hover:brightness-110",
                 )}
               >
                 <Mail className="size-3.5" />

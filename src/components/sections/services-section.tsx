@@ -41,8 +41,8 @@ export function ServicesSection() {
             const Icon = iconMap[service.icon] ?? Layers;
             return (
               <StaggerItem key={service.id}>
-                <GlassPanel className="group hover:border-primary/20 h-full p-6 transition-colors">
-                  <div className="bg-primary/10 text-primary border-primary/20 mb-4 flex size-10 items-center justify-center rounded-xl border">
+                <GlassPanel className="group h-full p-6" interactive>
+                  <div className="bg-primary/10 text-primary border-primary/20 group-hover:bg-primary/18 mb-4 flex size-10 items-center justify-center rounded-xl border transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_-4px_rgba(79,140,255,0.4)]">
                     <Icon className="size-5" aria-hidden />
                   </div>
                   <h3 className="font-display mb-2 text-lg font-semibold text-white">

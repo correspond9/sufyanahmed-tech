@@ -23,6 +23,7 @@ export function JsonLd() {
           siteConfig.links.github,
           siteConfig.links.linkedin,
           siteConfig.links.twitter,
+          siteConfig.links.instagram,
         ],
       },
       {

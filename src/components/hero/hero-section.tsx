@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { heroContent } from "@/constants/content";
 import { Container } from "@/components/ui/container";
@@ -35,6 +35,16 @@ function EcosystemFallback() {
 
 export function HeroSection() {
   const mounted = useMounted();
+  const prefersReducedMotion = useReducedMotion();
+
+  const hidden = prefersReducedMotion
+    ? { opacity: 1, y: 0, scale: 1 }
+    : { opacity: 0, y: 24, scale: 0.98 };
+  const visible = { opacity: 1, y: 0, scale: 1 };
+  const sceneHidden = prefersReducedMotion
+    ? { opacity: 1, scale: 1 }
+    : { opacity: 0, scale: 0.94 };
+  const sceneVisible = { opacity: 1, scale: 1 };
 
   return (
     <section
@@ -54,27 +64,27 @@ export function HeroSection() {
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-8 xl:gap-12">
           <div className="space-y-7 lg:space-y-8">
             <motion.div
-              initial={{ opacity: 1, y: 22 }}
-              animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 22 }}
-              transition={{ duration: 0.65, delay: 0.05, ease }}
+              initial={hidden}
+              animate={mounted ? visible : hidden}
+              transition={{ duration: 0.7, delay: 0.05, ease }}
             >
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-4 py-2 text-[10px] font-semibold tracking-[0.12em] text-white/70 uppercase backdrop-blur-md">
+              <span className="badge-glow inline-flex items-center gap-2.5 rounded-full border border-white/[0.1] bg-white/[0.05] px-4 py-2 text-[10px] font-semibold tracking-[0.12em] text-white/80 uppercase backdrop-blur-md">
                 <span className="status-pulse-dot size-1.5 rounded-full bg-emerald-400" />
                 {heroContent.badge}
               </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 1, y: 22 }}
-              animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 22 }}
-              transition={{ duration: 0.65, delay: 0.14, ease }}
+              initial={hidden}
+              animate={mounted ? visible : hidden}
+              transition={{ duration: 0.7, delay: 0.14, ease }}
               className="font-display text-[2.5rem] leading-[1.05] font-bold tracking-[-0.03em] text-white sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem]"
             >
               <span className="block">{heroContent.headline.line1}</span>
               <motion.div
-                initial={{ opacity: 1, y: 18 }}
-                animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 18 }}
-                transition={{ duration: 0.65, delay: 0.28, ease }}
+                initial={hidden}
+                animate={mounted ? visible : hidden}
+                transition={{ duration: 0.7, delay: 0.28, ease }}
               >
                 <GradientText
                   as="span"
@@ -86,55 +96,75 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 1, y: 22 }}
-              animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 22 }}
-              transition={{ duration: 0.65, delay: 0.36, ease }}
-              className="max-w-lg text-[15px] leading-[1.75] text-white/55 sm:text-base"
+              initial={hidden}
+              animate={mounted ? visible : hidden}
+              transition={{ duration: 0.7, delay: 0.36, ease }}
+              className="max-w-lg text-[15px] leading-[1.75] text-white/65 sm:text-base"
             >
               {heroContent.subtitle}
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 1, y: 22 }}
-              animate={mounted ? { opacity: 1, y: 0 } : { opacity: 1, y: 22 }}
-              transition={{ duration: 0.65, delay: 0.44, ease }}
+              initial={hidden}
+              animate={mounted ? visible : hidden}
+              transition={{ duration: 0.7, delay: 0.44, ease }}
               className="flex flex-wrap gap-3 pt-1"
             >
-              <Link
-                href={heroContent.cta.primary.href}
-                className={cn(
-                  "cta-glow-primary inline-flex items-center gap-2 rounded-full px-6 py-3",
-                  "text-[13px] font-semibold text-white",
-                  "from-primary bg-gradient-to-r to-[#6D5DF6]",
-                  "shadow-[0_0_32px_-4px_rgba(79,140,255,0.55)]",
-                  "transition-all duration-300 hover:shadow-[0_0_40px_-2px_rgba(79,140,255,0.65)] hover:brightness-110",
-                )}
+              <motion.div
+                whileHover={
+                  mounted && !prefersReducedMotion
+                    ? { scale: 1.04, y: -2 }
+                    : undefined
+                }
+                whileTap={
+                  mounted && !prefersReducedMotion ? { scale: 0.98 } : undefined
+                }
               >
-                {heroContent.cta.primary.label}
-                <ArrowRight className="size-4" />
-              </Link>
-              <Link
-                href={heroContent.cta.secondary.href}
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-6 py-3",
-                  "text-[13px] font-medium text-white/80",
-                  "border border-white/[0.1] bg-white/[0.04] backdrop-blur-md",
-                  "transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]",
-                )}
+                <Link
+                  href={heroContent.cta.primary.href}
+                  className={cn(
+                    "cta-glow-primary inline-flex items-center gap-2 rounded-full px-6 py-3",
+                    "text-[13px] font-semibold text-white",
+                    "from-primary bg-gradient-to-r to-[#6D5DF6]",
+                    "shadow-[0_0_32px_-4px_rgba(79,140,255,0.55)]",
+                    "transition-all duration-300 hover:shadow-[0_0_48px_-2px_rgba(79,140,255,0.75)] hover:brightness-110",
+                  )}
+                >
+                  {heroContent.cta.primary.label}
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={
+                  mounted && !prefersReducedMotion
+                    ? { scale: 1.03, y: -2 }
+                    : undefined
+                }
+                whileTap={
+                  mounted && !prefersReducedMotion ? { scale: 0.98 } : undefined
+                }
               >
-                <Mail className="size-4" />
-                {heroContent.cta.secondary.label}
-              </Link>
+                <Link
+                  href={heroContent.cta.secondary.href}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-full px-6 py-3",
+                    "text-[13px] font-medium text-white/85",
+                    "border border-white/[0.12] bg-white/[0.05] backdrop-blur-md",
+                    "hover:border-primary/30 hover:bg-primary/10 transition-all duration-300 hover:text-white",
+                  )}
+                >
+                  <Mail className="size-4" />
+                  {heroContent.cta.secondary.label}
+                </Link>
+              </motion.div>
             </motion.div>
 
             <HeroTerminal />
           </div>
 
           <motion.div
-            initial={{ opacity: 1, scale: 0.96 }}
-            animate={
-              mounted ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 0.96 }
-            }
+            initial={sceneHidden}
+            animate={mounted ? sceneVisible : sceneHidden}
             transition={{ duration: 1.1, delay: 0.2, ease }}
             className="relative min-h-[400px] overflow-hidden px-2 sm:min-h-[460px] lg:min-h-[560px] lg:px-4"
           >

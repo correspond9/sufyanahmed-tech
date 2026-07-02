@@ -22,9 +22,10 @@ export const siteConfig = {
     "product builder",
   ],
   links: {
-    github: "https://github.com/sufyanahmed",
-    linkedin: "https://linkedin.com/in/sufyanahmed",
-    twitter: "https://twitter.com/sufyanahmed",
+    github: "https://github.com/correspond9",
+    linkedin: "https://www.linkedin.com/in/sufyan-it-is/",
+    twitter: "https://x.com/Sufyan_it_is",
+    instagram: "https://www.instagram.com/sufyan_ansarii/",
   },
 } as const;
 

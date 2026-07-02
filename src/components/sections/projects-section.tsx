@@ -45,6 +45,7 @@ export function ProjectsSection() {
               <GlassPanel
                 className="group flex h-full flex-col overflow-hidden p-0"
                 glow
+                interactive
               >
                 <div className="p-3 pb-0">
                   <ProjectPreview

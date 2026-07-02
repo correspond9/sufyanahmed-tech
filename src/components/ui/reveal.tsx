@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 import { useMounted } from "@/hooks/use-mounted";
 import { cn } from "@/lib/utils";
 
+const ease = [0.22, 1, 0.36, 1] as const;
+
 interface RevealProps {
   children: ReactNode;
   className?: string;
@@ -25,8 +27,8 @@ export function Reveal({
   const mounted = useMounted();
   const { ref, inView } = useInView({
     triggerOnce: once,
-    threshold: 0.08,
-    rootMargin: "0px 0px -5% 0px",
+    threshold: 0.1,
+    rootMargin: "0px 0px -4% 0px",
   });
 
   if (!mounted || prefersReducedMotion) {
@@ -38,10 +40,10 @@ export function Reveal({
   }
 
   const offsets = {
-    up: 20,
-    down: -20,
-    left: 20,
-    right: -20,
+    up: 48,
+    down: -48,
+    left: 40,
+    right: -40,
     none: 0,
   };
 
@@ -52,16 +54,17 @@ export function Reveal({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 1, x: 0, y: 0 }}
+      initial={{ opacity: 0, x: 0, y: 0, scale: 0.98 }}
       animate={
         inView
-          ? { opacity: 1, x: 0, y: 0 }
+          ? { opacity: 1, x: 0, y: 0, scale: 1 }
           : {
-              opacity: 1,
+              opacity: 0,
+              scale: 0.98,
               [axis]: offset,
             }
       }
-      transition={{ duration: 0.55, delay, ease: [0, 0, 0.2, 1] }}
+      transition={{ duration: 0.8, delay, ease }}
     >
       {children}
     </motion.div>
@@ -77,14 +80,14 @@ interface StaggerRevealProps {
 export function StaggerReveal({
   children,
   className,
-  stagger = 0.08,
+  stagger = 0.1,
 }: StaggerRevealProps) {
   const prefersReducedMotion = useReducedMotion();
   const mounted = useMounted();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.08,
-    rootMargin: "0px 0px -5% 0px",
+    rootMargin: "0px 0px -4% 0px",
   });
 
   if (!mounted || prefersReducedMotion) {
@@ -103,7 +106,9 @@ export function StaggerReveal({
       animate={inView ? "visible" : "hidden"}
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: stagger } },
+        visible: {
+          transition: { staggerChildren: stagger, delayChildren: 0.05 },
+        },
       }}
     >
       {children}
@@ -122,11 +127,12 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 1, y: 16 },
+        hidden: { opacity: 0, y: 40, scale: 0.95 },
         visible: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.5, ease: [0, 0, 0.2, 1] },
+          scale: 1,
+          transition: { duration: 0.7, ease },
         },
       }}
     >
@@ -158,7 +164,7 @@ export function SectionHeader({
           align === "center" && "mx-auto text-center",
         )}
       >
-        <p className="text-primary/90 text-[13px] font-medium tracking-[0.12em] uppercase">
+        <p className="gradient-text-shine text-[13px] font-medium tracking-[0.12em] uppercase">
           {eyebrow}
         </p>
         <h2 className="font-display text-foreground text-3xl leading-[1.1] font-bold tracking-[-0.02em] sm:text-4xl lg:text-[2.75rem]">

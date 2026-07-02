@@ -91,7 +91,17 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground text-sm transition-colors"
                 >
-                  Twitter
+                  X
+                </a>
+              </li>
+              <li>
+                <a
+                  href={siteConfig.links.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+                >
+                  Instagram
                 </a>
               </li>
             </ul>

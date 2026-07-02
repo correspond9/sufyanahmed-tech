@@ -15,10 +15,10 @@ export const siteContent = {
     { label: "Contact", href: routes.contact },
   ],
   social: [
-    { label: "GitHub", href: "https://github.com/sufyanahmed" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/sufyanahmed" },
-    { label: "Twitter", href: "https://twitter.com/sufyanahmed" },
-    { label: "Email", href: "mailto:hello@sufyanahmed.tech" },
+    { label: "GitHub", href: "https://github.com/correspond9" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/sufyan-it-is/" },
+    { label: "X", href: "https://x.com/Sufyan_it_is" },
+    { label: "Instagram", href: "https://www.instagram.com/sufyan_ansarii/" },
   ],
 } as const;
 
