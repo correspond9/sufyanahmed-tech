@@ -14,6 +14,8 @@
   "href": "https://www.xchangebyte.com/",
   "linkLabel": "Visit Website",
   "theme": "dark",
+  "logo": "/assets/logos/xchangebyte.svg",
+  "preview": "/assets/previews/xchangebyte.png",
   "caseStudy": {
     "challenge": "Design an exchange platform foundation that can scale securely from day one, without over-engineering before product-market fit.",
     "solution": "Starting with a TypeScript-first Next.js codebase, clear domain boundaries, and cloud-native deployment patterns planned from the architecture phase.",

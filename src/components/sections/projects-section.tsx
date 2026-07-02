@@ -48,9 +48,13 @@ export function ProjectsSection() {
               >
                 <div className="p-3 pb-0">
                   <ProjectPreview
+                    id={project.id}
                     name={project.name}
                     theme={project.theme}
                     status={project.status}
+                    href={project.href}
+                    logo={project.logo}
+                    preview={project.preview}
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5 pt-4">

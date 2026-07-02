@@ -60,9 +60,13 @@ export default async function ProjectCaseStudyPage({
               <div className="grid lg:grid-cols-2">
                 <div className="border-b border-white/[0.06] p-4 lg:border-r lg:border-b-0">
                   <ProjectPreview
+                    id={project.id}
                     name={project.name}
                     theme={project.theme}
                     status={project.status}
+                    href={project.href}
+                    logo={project.logo}
+                    preview={project.preview}
                   />
                 </div>
                 <div className="flex flex-col justify-center p-6 sm:p-8">

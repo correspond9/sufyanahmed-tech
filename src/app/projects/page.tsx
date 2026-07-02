@@ -52,9 +52,13 @@ export default function ProjectsPage() {
                   <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
                     <div className="border-b border-white/[0.06] p-4 lg:border-r lg:border-b-0">
                       <ProjectPreview
+                        id={project.id}
                         name={project.name}
                         theme={project.theme}
                         status={project.status}
+                        href={project.href}
+                        logo={project.logo}
+                        preview={project.preview}
                       />
                     </div>
                     <div className="flex flex-col p-6 sm:p-8">

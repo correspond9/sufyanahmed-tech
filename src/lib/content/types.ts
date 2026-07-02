@@ -18,6 +18,8 @@ export interface Project {
   href: string;
   linkLabel: string;
   theme: ProjectTheme;
+  logo?: string;
+  preview?: string;
   caseStudy: {
     challenge: string;
     solution: string;

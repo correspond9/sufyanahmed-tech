@@ -14,6 +14,8 @@
   "href": "https://www.financio.pro/",
   "linkLabel": "Visit Live Platform",
   "theme": "light",
+  "logo": "/assets/logos/financio.png",
+  "preview": "/assets/previews/financio.png",
   "caseStudy": {
     "challenge": "Personal finance tools often overwhelm users with complexity. The goal was clarity — help people understand their money without friction.",
     "solution": "Built a focused SaaS experience with clean dashboards, thoughtful categorization, and a mobile-first layout that prioritizes the most important numbers first.",
