@@ -136,7 +136,7 @@ export function HeroSection() {
               mounted ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 0.96 }
             }
             transition={{ duration: 1.1, delay: 0.2, ease }}
-            className="relative min-h-[380px] overflow-hidden sm:min-h-[440px] lg:min-h-[520px]"
+            className="relative min-h-[400px] overflow-hidden px-2 sm:min-h-[460px] lg:min-h-[560px] lg:px-4"
           >
             <SceneErrorBoundary fallback={<EcosystemFallback />}>
               <EcosystemCanvas />
